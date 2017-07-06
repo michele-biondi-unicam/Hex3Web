@@ -1,2 +1,2 @@
 # Hex3Web
-Progetto per la classe di programmazione Web
+(C) Michele Biondi

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="it">
     <head>
-        <title>Hex3Web School</title>
+        <title>Hex3Web Piano di studio</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -10,8 +10,43 @@
               integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" 
               crossorigin="anonymous">
         
+        <!-- My CSS files -->
+        <link rel="stylesheet" type="text/css" href="./css/style.css">
+        <link rel="stylesheet" type="text/css" href="./css/sidenav.css">
+        <link rel="stylesheet" type="text/css" href="./css/navbar.css">
+        <link rel="stylesheet" type="text/css" href="./css/footer.css">
+        
+        
     </head>
     <body>
+        <!-- Navbar code-->
+        <nav class="navbar navbar-inverse navbar-fixed-top">
+            <div class="container-fluid">
+                    <a class="navbar-brand" href="#"><img src="./images/hex3logo.png" alt="HEX3web"></a>
+                    <ul class="nav navbar-nav navbar-right">
+                        <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+                    </ul>
+            </div>
+        </nav>
+        <!-- Center of the page -->
+        <div class="container-fluid text-center">
+            <div class="row content">
+                <!-- Sidebar code -->
+                <div class="col-sm-2 sidenav">
+                    <p><a href="#">TestLink</a></p>
+                    <hr>
+
+                </div>
+                <!-- Main page code (dynamic) -->
+                <div "col-sm-10">
+
+                </div>
+            </div>
+        </div>
+        <!-- Footer code -->
+        <footer class="container-fluid text-center footer">
+            <p>Testo footer</p>
+        </footer>
         
     </body>
 </html>
