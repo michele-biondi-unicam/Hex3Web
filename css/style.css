@@ -1,3 +1,4 @@
+/* Used to stick footer to the bottom regardless of the height of the page content */
 html {
     position: relative;
     min-height: 100%;
