@@ -1,3 +1,6 @@
+.navbar {
+    border-bottom: solid thin green;
+}
 .navbar-brand {
     padding: 0%;
 }
