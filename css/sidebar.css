@@ -1,0 +1,10 @@
+#sidebar{
+    z-index:3;
+    width:300px;
+}
+
+#unicam-logo {
+    width: auto;
+    height: 130px;
+    padding: 15px;
+}

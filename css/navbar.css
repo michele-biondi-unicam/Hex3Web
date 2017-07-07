@@ -2,6 +2,12 @@
     z-index:4;
 }
 
-#logo {
+#logo a {
     color: greenyellow;
+    text-decoration: none;
+}
+
+#logo a:hover{
+    color: whitesmoke;
+    
 }
