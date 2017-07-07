@@ -5,77 +5,57 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <!-- Latest compiled and minified Bootstrap CSS -->
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" 
-              integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" 
-              crossorigin="anonymous">
+        <!-- w3css from w3schools -->
+        <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+
+        <!-- raleway font from google -->
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
         
+        <!-- Font Awesome -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
         <!-- My CSS files -->
         <link rel="stylesheet" type="text/css" href="./css/style.css">
-        <link rel="stylesheet" type="text/css" href="./css/sidenav.css">
         <link rel="stylesheet" type="text/css" href="./css/navbar.css">
-        <link rel="stylesheet" type="text/css" href="./css/footer.css">
-        
+        <link rel="stylesheet" type="text/css" href="./css/sidebar.css">
         
     </head>
     <body>
 
-        <!-- Navbar code-->
-        <nav class="navbar navbar-inverse navbar-fixed-top">
-            <div class="container-fluid">
-                    <a class="navbar-brand" href="#"><img src="./img/hex3logo.png" alt="HEX3web"></a>
-                    <ul class="nav navbar-nav navbar-right">
-                        <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
-                    </ul>
+        <!-- Navbar code -->
+        <div id="navigation-bar" class="w3-bar w3-top w3-black w3-large w3-border-bottom w3-border-green">
+            <button class="w3-bar-item w3-button w3-hide-large w3-hover-none w3-hover-text-light-grey" onclick="w3_open();"><i class="fa fa-bars"></i> &nbsp;Menu</button>
+            <span id="logo" class="w3-bar-item w3-left"><a href="#" >HEX3web</a></span>
+        </div>
+
+        <!-- Sidebar code -->
+        <nav id="sidebar" class="w3-sidebar w3-collapse w3-black w3-animate-left"><br>
+            <div class="w3-container">
+                <h4>Benvenuto</h4>
+                <h6>Accedi alla piattaforma.</h6>
+            </div>
+            <hr />
+            <div class="w3-bar-block">
+                <a href="#" class="w3-bar-item w3-button w3-padding-16 w3-hide-large w3-dark-grey w3-hover-black" onclick="w3_close()" title="close menu"><i class="fa fa-remove fa-fw"></i>&nbsp; Close Menu</a>
+                <a href="#" class="w3-bar-item w3-button w3-padding w3-red"><i class="fa fa-user fa-fw"></i>&nbsp; LOGIN</a>
+                <a href="#" class="w3-bar-item w3-button w3-padding"><i class="fa fa-question-circle fa-fw"></i>&nbsp; FAQ</a>
+                <a href="#" class="w3-bar-item w3-button w3-padding"><i class="fa fa-envelope-open fa-fw"></i>&nbsp; Contatti</a>
+                <a href="https://github.com/michele-biondi-unicam/Hex3Web" class="w3-bar-item w3-button w3-padding"><i class="fa fa-github-alt fa-fw"></i>&nbsp; Contribuisci</a>
+            </div>
+            <div class="w3-bottom">
+                <a href="https://www.unicam.it"><img id="unicam-logo" src="./img/logo-unicam-long.jpg" /></a>
             </div>
         </nav>
 
-        <!-- Center of the page -->
-        <div class="container-fluid text-center">
-            <div class="row content">
+        <!-- Overlay effect when opening sidebar on small screens -->
+        <div id="overlay-effect" class="w3-overlay w3-hide-large w3-animate-opacity" onclick="w3_close()" style="cursor:pointer" title="close side menu"></div>
 
-                <!-- Sidebar code -->
-                <div class="col-sm-2 sidenav">
-                </div>
+        <!-- Main content -->
+        <div class="w3-main" style="margin-left:300px;margin-top:43px;">
 
-                <!-- Main page code (dynamic) -->
-                <div "col-sm-10">
-                    
-                </div>
-            </div>
         </div>
 
-        <!-- Footer code -->
-        <footer class="container-fluid footer">
-            <div class="row content">
-
-                <!-- Unicam Logo --> 
-                <div class="col-sm-2">
-                    <img id="unicam-logo" src="./img/unicam-logo.png" alt="Logo Università degli studi di Camerino">
-                </div>
-
-                <!-- Empty space -->
-                <div class="col-sm-6">
-
-                </div>
-                <!-- University Info -->
-                <div class="col-sm-2">
-                    <ul>
-                        <li>Via: Piazza Cavour 19/f 62032 Camerino MC</li>
-                        <li>Numero verde: 800 054 000</li>
-                        <li>P.IVA: 00291660439 </li>
-                    </ul>
-                </div>
-                <div class="col-sm-2">
-                    <ul>
-                        <li>C.F.: 81001910439 </li>
-                        <li>Posta certificata: protocollo@pec.unicam.it</li>
-                        <li>Segnalazioni: michele.biondi@studenti.unicam.it 
-                    </ul>
-                </div>
-            </div>
-                
-        </footer>
-        
+        <!-- Loads script for the sidebar -->
+        <script src="./js/sidebar.js"> </script>    
     </body>
 </html>
