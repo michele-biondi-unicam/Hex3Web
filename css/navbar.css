@@ -1,15 +1,7 @@
-.navbar {
-    border-bottom: solid thin green;
-}
-.navbar-brand {
-    padding: 0%;
+#navigation-bar {
+    z-index:4;
 }
 
-.navbar-brand>img {
-    height: 100%;
-    padding-top: 2px;
-    padding-bottom: 2px;
-    padding-right: 2px;
-    padding-left: 10px;
-    width: auto;
+#logo {
+    color: greenyellow;
 }
