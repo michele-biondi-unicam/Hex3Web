@@ -14,15 +14,17 @@
         <!-- Font Awesome -->
         <link rel="stylesheet" href="node_modules/font-awesome/css/font-awesome.min.css">
 
-        <!-- AngularJS -->
-        <script src="node_modules/angular/angular.js"></script>
-
         <!-- My CSS files -->
         <link rel="stylesheet" href="css/style.css">
         <link rel="stylesheet" href="css/navbar.css">
         <link rel="stylesheet" href="css/sidebar.css">
         
     </head>
+    
+    <!-- AngularJS -->
+    <script src="node_modules/angular/angular.js"></script>
+
+
     <body>
 
         <!-- Navbar code -->
@@ -45,23 +47,28 @@
                 <a href="#" class="w3-bar-item w3-button w3-padding w3-red"><i class="fa fa-user fa-fw"></i>&nbsp; LOGIN</a>
                 <a href="#" class="w3-bar-item w3-button w3-padding"><i class="fa fa-question-circle fa-fw"></i>&nbsp; FAQ</a>
                 <a href="#" class="w3-bar-item w3-button w3-padding"><i class="fa fa-envelope-open fa-fw"></i>&nbsp; Contatti</a>
-                <a href="https://github.com/michele-biondi-unicam/Hex3Web" class="w3-bar-item w3-button w3-padding"><i class="fa fa-github-alt fa-fw"></i>&nbsp; Contribuisci</a>
+                <a href="https://github.com/michele-biondi-unicam/Hex3Web" class="w3-bar-item w3-button"><i class="fa fa-github-alt fa-fw"></i>&nbsp; Contribuisci</a>
+                
+                <!-- Fix for a bug that doesn't display the last item on small screens -->
+                    <p class="w3-bar-item w3-padding"></p>
+                <!-- End fix -->
+                
+                
+
+                <div class="w3-container w3-bar-item w3-bottom w3-padding w3-hide-medium w3-hide-small">
+                    <a href="https://www.unicam.it"><img id="unicam-logo" src="img/unicam-logo.jpg" /></a>
+                </div>
             </div>
-            <div class="w3-container w3-bottom w3-padding w3-hide-medium w3-hide-small">
-                    <a href="https://www.unicam.it"><img id="unicam-logo" src="./img/logo-unicam-long.jpg" /></a>
-            </div>
+            
         </nav>
 
-        <!-- Overlay effect when opening sidebar on small screens -->
-        <div id="overlay-effect" class="w3-overlay w3-hide-large w3-animate-opacity" onclick="w3_close()" style="cursor:pointer" title="close side menu"></div>
-
         <!-- Main content -->
-        <div class="w3-main" style="margin-left:300px;margin-top:43px;">
+        <div class="w3-main" style="margin-left:300px; margin-top:43px;">
             
             
         </div>
 
         <!-- Loads script for the sidebar -->
-        <script src="./js/sidebar.js"> </script>    
+        <script src="js/sidebar.js"> </script>    
     </body>
 </html>
