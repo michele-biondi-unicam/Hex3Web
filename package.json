@@ -1,0 +1,22 @@
+{
+  "name": "hex3web",
+  "version": "1.0.0",
+  "description": "Applicazione per la gestione del piano di studi.",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/michele-biondi-unicam/Hex3Web.git"
+  },
+  "author": "Michele Biondi",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/michele-biondi-unicam/Hex3Web/issues"
+  },
+  "homepage": "https://github.com/michele-biondi-unicam/Hex3Web#readme",
+  "dependencies": {
+    "w3-css": "^4.0.4"
+  }
+}
