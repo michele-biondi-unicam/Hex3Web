@@ -17,10 +17,11 @@
     <link rel="stylesheet" href="../node_modules/font-awesome/css/font-awesome.min.css">
 
     <!-- My CSS files -->
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/main.css">
     <link rel="stylesheet" href="css/navbar.css">
     <link rel="stylesheet" href="css/sidebar.css">
     <link rel="stylesheet" href="css/login.css">
+    <link rel="stylesheet" href="css/home.css">
 
 </head>
 
@@ -28,7 +29,7 @@
 <script src="../node_modules/angular/angular.js"></script>
 <script src="../node_modules/angular-route/angular-route.js"></script>
 
-<body ng-app="hex3web">
+<body ng-app="hex3web" class="w3-light-gray">
     <!-- Navbar code -->
     <div id="navigation-bar" class="w3-bar w3-top w3-black w3-large w3-border-bottom w3-border-green">
         <button class="w3-bar-item w3-button w3-hide-large w3-hover-green w3-hover-text-black" onclick="w3_open();"><i class="fa fa-bars"></i> &nbsp;Menu</button>
@@ -46,9 +47,9 @@
             <a href="" class="w3-bar-item w3-button w3-padding-16 w3-hide-large w3-dark-grey w3-hover-white" onclick="w3_close()" title="close menu">
                 <i class="fa fa-remove fa-fw"></i>&nbsp; Close Menu
             </a>
-            <a href="#!/login" class="w3-bar-item w3-button w3-padding w3-red"><i class="fa fa-user fa-fw"></i>&nbsp; LOGIN</a>
+            <a href="#!/login" class="w3-bar-item w3-button w3-padding w3-red"><i class="fa fa-user fa-fw"></i>&nbsp; Accedi</a>
             <a href="#" class="w3-bar-item w3-button w3-padding"><i class="fa fa-question-circle fa-fw"></i>&nbsp; FAQ</a>
-            <a href="#" class="w3-bar-item w3-button w3-padding"><i class="fa fa-envelope-open fa-fw"></i>&nbsp; Contatti</a>
+            <a href="#" class="w3-bar-item w3-button w3-padding"><i class="fa fa-envelope-open fa-fw"></i>&nbsp; Contattaci</a>
             <a href="https://github.com/michele-biondi-unicam/Hex3Web" class="w3-bar-item w3-button"><i class="fa fa-github-alt fa-fw"></i>&nbsp; Contribuisci</a>
 
             <!-- Fix for a bug that doesn't display the last item on small screens -->
@@ -65,11 +66,18 @@
     </nav>
 
     <!-- Main content -->
-    <div id="main" class="w3-main">
+    <div class="main-content" class="w3-main">
         <div ng-view>
 
         </div>
     </div>
+
+
+<!-- Footer -->
+<footer class="w3-container w3-center w3-opacity w3-light-grey w3-xlarge main-content">
+    <p>Powered by W3CSS</p>
+   <i class="fa fa-copyright "></i> Michele Biondi
+</footer>
 
 
     <!-- Javascript files-->
