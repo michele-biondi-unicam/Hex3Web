@@ -18,6 +18,7 @@
   "homepage": "https://github.com/michele-biondi-unicam/Hex3Web#readme",
   "dependencies": {
     "angular": "^1.6.5",
+    "angular-route": "^1.6.5",
     "font-awesome": "^4.7.0",
     "raleway-webfont": "^3.0.1",
     "w3-css": "^4.0.4"
