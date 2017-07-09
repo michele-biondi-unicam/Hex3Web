@@ -2,10 +2,10 @@ var app = angular.module("hex3web", ["ngRoute"]);
 app.config(function($routeProvider) {
     $routeProvider
     .when("/", {
-        templateUrl : "home.htm"
+        templateUrl : "components/home/home.html"
     })
     .when("/login", {
-        templateUrl : "login.htm"
+        templateUrl : "components/login/login.html"
     })
     .when("/green", {
         templateUrl : "green.htm"
