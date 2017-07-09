@@ -10,5 +10,8 @@ app.config(function($routeProvider) {
     })
     .when("/faq", {
         templateUrl : "components/faq/faq.html"
+    })
+    .when("/contacts", {
+        templateUrl : "components/contacts/contacts.html"
     });
 });
