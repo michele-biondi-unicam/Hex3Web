@@ -1,16 +1,14 @@
 var app = angular.module("hex3web", ["ngRoute"]);
+
 app.config(function($routeProvider) {
     $routeProvider
     .when("/", {
-        templateUrl : "components/home/home.html"
+        templateUrl : "components/homepage/homepage.html"
     })
     .when("/login", {
         templateUrl : "components/login/login.html"
     })
-    .when("/green", {
-        templateUrl : "green.htm"
-    })
-    .when("/blue", {
-        templateUrl : "blue.htm"
+    .when("/faq", {
+        templateUrl : "components/faq/faq.html"
     });
 });
