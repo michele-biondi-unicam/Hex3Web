@@ -1,17 +1,18 @@
 var app = angular.module("hex3web", ["ngRoute"]);
 
-app.config(function($routeProvider) {
+app.config(function($locationProvider, $routeProvider) {
+
     $routeProvider
     .when("/", {
-        templateUrl : "components/homepage/homepage.html"
+        templateUrl : "app/components/homepage/homepage.html"
     })
     .when("/login", {
-        templateUrl : "components/login/login.html"
+        templateUrl : "app/components/login/login.html"
     })
     .when("/faq", {
-        templateUrl : "components/faq/faq.html"
+        templateUrl : "app/components/faq/faq.html"
     })
     .when("/contacts", {
-        templateUrl : "components/contacts/contacts.html"
+        templateUrl : "app/components/contacts/contacts.html"
     });
 });
