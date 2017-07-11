@@ -1,7 +1,8 @@
-var app = angular.module("hex3web", ["ngRoute"]);
+hexTreWebApp.config(function($locationProvider, $routeProvider) {
 
-app.config(function($locationProvider, $routeProvider) {
+    $locationProvider.hashPrefix('!');
 
+    // ======= AngularJS Routes ========//
     $routeProvider
     .when("/", {
         templateUrl : "app/components/homepage/homepage.html"
@@ -14,5 +15,9 @@ app.config(function($locationProvider, $routeProvider) {
     })
     .when("/contacts", {
         templateUrl : "app/components/contacts/contacts.html"
+    })
+    .when("/register", {
+        templateUrl : "app/components/register/register.html",
+        controller : "registerCtrl"
     });
 });

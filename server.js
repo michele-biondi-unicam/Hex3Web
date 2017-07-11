@@ -3,18 +3,15 @@
  // express.js server
 var express = require('express');
 var app = express();
-// morgan for logging
-var morgan = require('morgan');
 
 // ===== CONFIGURATION ====== //
-var port = process.env.PORT || 8080; // Defaults to 8080 if environment port not set
 
-// use morgan to log requests to the console
-// COMMENT IT OR DELETE ON RELEASE
-app.use(morgan('dev'));
+ // port number , defaults to 8080 if environment port not set.
+var port = process.env.PORT || 8080; 
 
-// Loads default page (index.html)
+ // folder where index.html is located
 app.use(express.static(__dirname));
 
+ // server starts to listen to requests at the specified port 
 var server = app.listen(port);
 console.log("Server listening at http://localhost:" + port);

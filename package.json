@@ -4,7 +4,7 @@
   "description": "Applicazione per la gestione del piano di studi.",
   "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "npm install && nodemon server"
   },
   "repository": {
     "type": "git",
@@ -27,7 +27,5 @@
     "raleway-webfont": "^3.0.1",
     "w3-css": "^4.0.4"
   },
-  "devDependencies": {
-    "morgan": "^1.8.2"
-  }
+  "devDependencies": {}
 }
