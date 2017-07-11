@@ -16,8 +16,12 @@ hexTreWebApp.config(function($locationProvider, $routeProvider) {
     .when("/contacts", {
         templateUrl : "app/components/contacts/contacts.html"
     })
-    .when("/register", {
-        templateUrl : "app/components/register/register.html",
+    .when("/registerstudent", {
+        templateUrl : "app/components/register/registerStudent.html",
+        controller : "registerCtrl"
+    })
+    .when("/registerprofessor", {
+        templateUrl : "app/components/register/registerProfessor.html",
         controller : "registerCtrl"
     });
 });
