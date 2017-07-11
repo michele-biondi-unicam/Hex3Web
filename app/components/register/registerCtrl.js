@@ -1,4 +1,19 @@
 hexTreWebApp.controller('registerCtrl', ['$scope' ,function($scope){
+    $scope.enabled = true;
+
+    /*
+        Function name: check_password_match()
+        checks if the two passwords provided match 
+    */
+    $scope.check_password_match = function(){
+        if($scope.password != $scope.passwordConfirm){
+            $scope.enabled = false;
+        }
+        else {
+            $scope.enabled = true;
+        }
+    };
+
 
     /*
         Function name: change_username()
@@ -17,5 +32,7 @@ hexTreWebApp.controller('registerCtrl', ['$scope' ,function($scope){
         else {
             $scope.username = $scope.name.toLowerCase() + "." + $scope.surname.toLowerCase();
         } 
-    }
+    };
+
+    
 }]);
