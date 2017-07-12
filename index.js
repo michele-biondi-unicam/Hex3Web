@@ -71,7 +71,6 @@ app.post('/', function(req, res) {
 
  // folder where index.html is located
 app.use(express.static(__dirname + '/app'));
-app.use('/node_modules', express.static(__dirname + '/node_modules'));
 
  // server starts to listen to requests at the specified port 
 var server = app.listen(port);
