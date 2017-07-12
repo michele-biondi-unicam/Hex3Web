@@ -38,7 +38,7 @@
                     <!-- Empty icon-->
                     <div class="w3-col register-icon"><i class="w3-xxlarge fa"></i></div>
                     <div class="w3-rest">
-                        <input ng-model="passwordConfirm" ng-change="check_password_match()" class="w3-input w3-border" name="password-confirm" type="password" placeholder="Conferma password" required/>
+                        <input ng-class="{'w3-red': red}" ng-model="passwordConfirm" ng-change="check_password_match()" class="w3-input w3-border" name="password-confirm" type="password" placeholder="Conferma password" required/>
                     </div>
                 </div>
             </div>

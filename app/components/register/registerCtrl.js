@@ -1,6 +1,6 @@
 hexTreWebApp.controller('registerCtrl', ['$scope' ,function($scope){
     $scope.enabled = true;
-
+    $scope.red = false;
     /*
         Function name: check_password_match()
         checks if the two passwords provided match 
@@ -8,9 +8,11 @@ hexTreWebApp.controller('registerCtrl', ['$scope' ,function($scope){
     $scope.check_password_match = function(){
         if($scope.password != $scope.passwordConfirm){
             $scope.enabled = false;
+            $scope.red = true;
         }
         else {
             $scope.enabled = true;
+            $scope.red = false;
         }
     };
 
