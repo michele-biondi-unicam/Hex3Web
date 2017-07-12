@@ -1,18 +1,19 @@
 hexTreWebApp.controller('registerCtrl', ['$scope' ,function($scope){
     $scope.enabled = true;
     $scope.red = false;
+
     /*
         Function name: check_password_match()
         checks if the two passwords provided match 
     */
     $scope.check_password_match = function(){
         if($scope.password != $scope.passwordConfirm){
-            $scope.enabled = false;
-            $scope.red = true;
+            $scope.enabled = false; // Disables the register button
+            $scope.red = true; // Makes confirm password input bar red
         }
         else {
-            $scope.enabled = true;
-            $scope.red = false;
+            $scope.enabled = true; // Re-activates the register button  
+            $scope.red = false; // Restores the password bar to its default color
         }
     };
 

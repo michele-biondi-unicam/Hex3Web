@@ -1,27 +1,28 @@
 hexTreWebApp.config(function($locationProvider, $routeProvider) {
 
+    // Prefix used for Hashbang URLs (used in Hashbang mode or in legacy browsers in HTML5 mode)
     $locationProvider.hashPrefix('!');
 
     // ======= AngularJS Routes ========//
     $routeProvider
     .when("/", {
-        templateUrl : "app/components/homepage/homepage.html"
+        templateUrl : "/views/homepage/homepage.html"
     })
     .when("/login", {
-        templateUrl : "app/components/login/login.html"
+        templateUrl : "/views/login/login.html"
     })
     .when("/faq", {
-        templateUrl : "app/components/faq/faq.html"
+        templateUrl : "/views/faq/faq.html"
     })
-    .when("/contacts", {
-        templateUrl : "app/components/contacts/contacts.html"
+    .when("/contactus", {
+        templateUrl : "/views/contactus/contactus.html"
     })
     .when("/registerstudent", {
-        templateUrl : "app/components/register/registerStudent.html",
+        templateUrl : "/views/register/registerStudent.html",
         controller : "registerCtrl"
     })
     .when("/registerprofessor", {
-        templateUrl : "app/components/register/registerProfessor.html",
+        templateUrl : "/views/register/registerProfessor.html",
         controller : "registerCtrl"
     });
 });

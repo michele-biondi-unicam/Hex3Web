@@ -2,9 +2,9 @@
   "name": "hex3web",
   "version": "1.0.0",
   "description": "Applicazione per la gestione del piano di studi.",
-  "main": "server.js",
+  "main": "index.js",
   "scripts": {
-    "start": "npm install && nodemon server"
+    "start": "npm install && cd app/ && yarn install && cd .. && nodemon index"
   },
   "repository": {
     "type": "git",
@@ -17,16 +17,12 @@
   },
   "homepage": "https://github.com/michele-biondi-unicam/Hex3Web#readme",
   "dependencies": {
-    "angular": "^1.6.5",
-    "angular-route": "^1.6.5",
     "body-parser": "^1.17.2",
     "express": "^4.15.3",
-    "font-awesome": "^4.7.0",
     "jsonwebtoken": "^7.4.1",
     "mongoose": "^4.11.1",
-    "q": "^1.5.0",
-    "raleway-webfont": "^3.0.1",
-    "w3-css": "^4.0.4"
+    "morgan": "^1.8.2",
+    "winston": "^2.3.1"
   },
   "devDependencies": {}
 }
