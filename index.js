@@ -6,28 +6,30 @@ var app = express();
 
 
 var bodyParser = require("body-parser"); // get POST parameters
-var morgan      = require('morgan');    // automatic log of HTTP requests
+var morgan = require('morgan');    // automatic log of HTTP requests
+var q = require('q');          // Q promise
 var mongoose = require('mongoose'); // High-level mongodb interface
-
+// Use q promise with mongoose
+mongoose.Promise = require('q').Promise;
 
 // Configuration file
-var config = require('./config'); 
+var config = require('./config');
 
 //================LOGGING==============//
 var winston = require('winston');
 var fs = require('fs');
 
 // creates the log directory if it does not exist
-if (!fs.existsSync(config['log-dir'])) 
-   {  fs.mkdirSync(config['log-dir']); }
+if (!fs.existsSync(config['log-dir']))
+{ fs.mkdirSync(config['log-dir']); }
 
 var tsFormat = () => (new Date()).toLocaleDateString();
 global.logger = new (winston.Logger)({
-    transports:[
+    transports: [
         new (winston.transports.Console)({
             timestamp: tsFormat,
             colorize: true,
-            level: config['log-level']   
+            level: config['log-level']
             /*  Selects log level
                { error:0, warn:1, info:2, verbose:3, debug:4, silly:5 }
             */
@@ -42,14 +44,30 @@ global.logger = new (winston.Logger)({
     ]
 });
 
-// ===== CONFIGURATION ====== //
+// ===== SERVER INITIALIZE ====== //
 
- // port number , defaults to 8080 if environment port not set.
+/* 
+    MIDDLEWARE
+  if I make requests from a different domain of the server, I have to grant the access to that specific domain.
+  Example.  I have deployed my server on http://myserver1.it
+  But I send requests from http://myserver2.it  In this case I should enable 'myserver2.it' as granted domain.
+  in the rule 'Access-Control-Allow-Origin'.  If I use '*', I enable any domain.
+*/
+app.use(function(req, res, next){
+
+  res.setHeader('Access-Control-Allow-Origin', '*');                                            //granted domains
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept"); //granted headers
+  res.setHeader('Access-Control-Allow-Credentials', true);
+  res.setHeader('Access-Control-Allow-Methods', 'POST, GET, PUT, DELETE, OPTIONS');             //granted http verbs
+  next();
+});
+
+// port number , defaults to 8080 if environment port not set.
 var port = process.env.PORT || 8080;
 
 // Connects to database using the new mongoose connection logic
 mongoose.connect(config.database, {
-  useMongoClient: true
+    useMongoClient: true
 });
 
 // use body parser so we can get info from POST and/or URL parameters
@@ -61,18 +79,24 @@ app.use(morgan('dev'));  // dev is the level of log (development)
 
 
 //=============== ROUTES =============//
-app.post('/', function(req, res) {
-    res.send('Ciao! benvenuto nelle API POST del tutorial JWT su http://localhost:' + port);
-});
+
+/*
+    ADMIN ROUTES
+*/
+var adminRoutes = require('./routes/admin/admin-index');
+app.use('/admin', adminRoutes);   // put /admin as prefix
 
 
+/*
+    API ROUTES
+*/
+var apiRoutes = require('./routes/api/api-index');
+app.use('/api', apiRoutes);   // put /api as prefix
 
-
-
- // folder where index.html is located
+// folder where index.html is located
 app.use(express.static(__dirname + '/app'));
 
- // server starts to listen to requests at the specified port 
+// server starts to listen to requests at the specified port 
 var server = app.listen(port);
-console.log("Server listening at http://localhost:" + port);
-console.log("Log level: " + config['log-level']);
+logger.debug("Server listening at http://localhost:" + port);
+logger.debug("Log level: " + config['log-level']);
