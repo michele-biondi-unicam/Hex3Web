@@ -9,7 +9,8 @@ hexTreWebApp.config(function($locationProvider, $routeProvider) {
         templateUrl : "/views/homepage/homepage.html"
     })
     .when("/login", {
-        templateUrl : "/views/login/login.html"
+        templateUrl : "/views/login/login.html",
+        controller : "loginCtrl"
     })
     .when("/faq", {
         templateUrl : "/views/faq/faq.html"
