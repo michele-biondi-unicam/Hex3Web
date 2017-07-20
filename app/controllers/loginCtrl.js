@@ -5,6 +5,14 @@ hexTreWebApp.controller('loginCtrl', ['$scope', 'AuthenticationService', functio
     $scope.password = "";
 
     $scope.login = function(){
+        
+        if($scope.username == undefined || $scope.password == undefined 
+            ||
+           $scope.username == "" || $scope.password == "" 
+        ){
+            return; //Doesn't display errors if username and/or password are empty (web page already pops a tooltip)
+        }
+
         AuthenticationService.login($scope.username, $scope.password)
         .then(function(data){
             console.log(data);
