@@ -24,7 +24,7 @@ hexTreWebApp.service('AuthenticationService', ['$q','$http', function($q, $http)
                 self.loggedUser = undefined; // user reset
                 deferred.reject(err);
             });
-
+            
             return deferred.promise;
         }
 }]).run(function(AuthenticationService){});
