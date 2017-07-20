@@ -19,11 +19,13 @@ this.ERR_MISSING_DATA  = 'ERR_MISSING_DATA';
     function: addUser(name, password)
     Adds a user to the database
 */
-this.addUser = function (name, password) {
+this.addUser = function (username, name, surname, password, role) {
     return db_utilities.addUser({
+        username: username,
         name: name,
+        surname: surname,
         password: password,
-        admin: false
+        role: role
     });  // Returns a Promise
 }
 
@@ -31,12 +33,12 @@ this.addUser = function (name, password) {
     function login(name, psw)
     Permits the login
 */
-this.login = function(name, psw) 
+this.login = function(username, psw) 
 { 
   var deferred = q.defer();
     
   // find the user
-  User.findOne({ name: name})
+  User.findOne({ username: username})
       .then(function(user) 
         {
          if (!user) 

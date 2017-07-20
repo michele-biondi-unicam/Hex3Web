@@ -3,6 +3,6 @@ module.exports = {
     'database': 'mongodb://localhost:27017/hex_tre_web',
     'log-dir' : 'log',
     'log-level':'debug',
-    'default-admin-name': 'admin',
+    'default-admin-username': 'admin',
     'default-admin-psw' : 'nimda'
 };

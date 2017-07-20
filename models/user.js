@@ -14,7 +14,7 @@ var User = mongoose.model('User', new Schema({
     //TODO Replace password in the future with hash
     password : {
         type: String,
-        minlength: 8
+        minlength: 5
     },
     role : {
         type: String,
