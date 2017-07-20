@@ -15,14 +15,6 @@ var ERR_DB_DUPLICATE_KEY = '11000';
 this.addUser = function (user) {
     var deferred = q.defer();
 
-    //TODO Implement this in mongoose Schema
-    if (!user.password || user.password == "" || user.password.length < 4) {
-        deferred.reject('la password deve avere almeno 4 caratteri');
-        return deferred.promise;
-    }
-    if (!user.admin)
-    { user.admin = false; }
-
     // creates a user that has to respect the mongoose Schema
     var generatedUser = new User(user);
 

@@ -6,16 +6,19 @@ var Schema = mongoose.Schema;
 var User = mongoose.model('User', new Schema({
     username : { 
         type: String, 
-        unique: true ,
+        unique: true,
         required: true 
     },
     name : String,
     surname : String,
-    email : String,
-    password : String, // Replace in the future with Hash
+    //TODO Replace password in the future with hash
+    password : {
+        type: String,
+        minlength: 8
+    },
     role : {
         type: String,
-        enum: ['admin', 'student','professor'],
+        enum: ['admin', 'student', 'professor'],
         required: true
     }
 }));
