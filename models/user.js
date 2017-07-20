@@ -4,10 +4,20 @@ var Schema = mongoose.Schema;
 
 // setup user model and pass it with module.exports
 var User = mongoose.model('User', new Schema({
-    name : { type: String, unique:true ,required:true },
+    username : { 
+        type: String, 
+        unique: true ,
+        required: true 
+    },
+    name : String,
+    surname : String,
     email : String,
-    password : String,
-    admin : {type:Boolean, default:false}
+    password : String, // Replace in the future with Hash
+    role : {
+        type: String,
+        enum: ['admin', 'student','professor'],
+        required: true
+    }
 }));
 
 module.exports = User;

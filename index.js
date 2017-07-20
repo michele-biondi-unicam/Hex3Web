@@ -65,7 +65,7 @@ app.use(function(req, res, next){
 // port number , defaults to 8080 if environment port not set.
 var port = process.env.PORT || 8080;
 
-// Connects to database using the new mongoose connection logic
+// Connects to database using the latest mongoose connection logic
 mongoose.connect(config.database, {
     useMongoClient: true
 });
@@ -93,7 +93,7 @@ app.use('/admin', adminRoutes);   // put /admin as prefix
 var apiRoutes = require('./routes/api/api-index');
 app.use('/api', apiRoutes);   // put /api as prefix
 
-// folder where index.html is located
+// root for the user (index.html is here)
 app.use(express.static(__dirname + '/app'));
 
 // server starts to listen to requests at the specified port 

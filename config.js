@@ -4,5 +4,5 @@ module.exports = {
     'log-dir' : 'log',
     'log-level':'debug',
     'default-admin-name': 'admin',
-    'default-admin-psw' : 'admin'
+    'default-admin-psw' : 'nimda'
 };
