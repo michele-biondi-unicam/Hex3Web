@@ -20,7 +20,7 @@ hexTreWebApp.controller('loginCtrl', ['$scope','$location', 'AuthenticationServi
             $location.path('/homepageuser');
         })
         .catch(function(err){
-            alert("Username o password errati")
+            alert("Username o password errati");
 
             //I reset inputs forms
             $scope.username = undefined;

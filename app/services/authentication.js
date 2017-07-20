@@ -8,13 +8,13 @@ hexTreWebApp.service('AuthenticationService', ['$q','$http', function($q, $http)
 
 
         //============ FUNCTIONS ==============//
-        this.login = function(name, password){
+        this.login = function(username, password){
             var deferred = $q.defer();
 
             $http({
                 method: 'POST',
                 url: 'http://localhost:8080/api/authenticate',
-                data: {'name':name, 'password':password}
+                data: {'username':username, 'password':password}
             })
             .then(function(data){
                 self.loggedUser = data;
