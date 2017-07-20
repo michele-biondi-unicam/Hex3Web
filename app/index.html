@@ -5,16 +5,19 @@
 
     <title>Hex3Web Piano di studio</title>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
 
     <!-- W3css from w3schools -->
-    <link rel="stylesheet" href="/node_modules/w3-css/w3.css">
+    <link rel="stylesheet" href="/node_modules/w3-css/w3.css" />
 
     <!-- Raleway Font -->
-    <link rel="stylesheet" href="/node_modules/raleway-webfont/raleway.css">
+    <link rel="stylesheet" href="/node_modules/raleway-webfont/raleway.css" />
 
     <!-- Font Awesome -->
-    <link rel="stylesheet" href="/node_modules/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/node_modules/font-awesome/css/font-awesome.min.css" />
 
     <!-- AngularJS -->
     <script src="/node_modules/angular/angular.js"></script>
@@ -23,7 +26,10 @@
     <script src="/app.module.js"></script>
     <script src="/app.config.js"></script>
     <!-- AngularJS Controllers -->
-    <script src="/components/register/registerCtrl.js"></script>
+    <script src="/controllers/registerCtrl.js"></script>
+    <script src="/controllers/loginCtrl.js"></script>
+    <!-- AngularJS Services -->
+    <script src="/services/authentication.js"></script>
 
 
     <!-- My CSS files -->
@@ -31,7 +37,7 @@
     <link rel="stylesheet" href="/css/navbar.css">
     <link rel="stylesheet" href="/css/sidebar.css">
     <link rel="stylesheet" href="/css/login.css">
-     <link rel="stylesheet" href="/css/register.css">
+    <link rel="stylesheet" href="/css/register.css">
     <link rel="stylesheet" href="/css/home.css">
     <link rel="stylesheet" href="/css/contacts.css">
 
@@ -78,7 +84,7 @@
 
     <!-- Main content -->
     <div id="main-content" class="w3-main">
-        <!-- Dynamic content -->
+        <!-- Injected content -->
         <div ng-view>
 
         </div>

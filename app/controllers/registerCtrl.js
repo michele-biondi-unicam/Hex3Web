@@ -1,3 +1,5 @@
+var hexTreWebApp = angular.module("hexTreWeb");
+
 hexTreWebApp.controller('registerCtrl', ['$scope' ,function($scope){
     $scope.enabled = true;
     $scope.red = false;
