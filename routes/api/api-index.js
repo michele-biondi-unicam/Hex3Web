@@ -56,7 +56,7 @@ apiRoutes.post('/signup', function(req, res)
                   {
                     return res.status(400).json({ success: false, 
                                                   code:api_utilities.ERR_MISSING_DATA,
-                                                  message: 'Bad Request. name, role and password required.' });
+                                                  message: 'Bad Request. username, role and password required.' });
                   } 
                // esecuzione funzione    
               api_utilities.addUser(username, name, surname, psw, role)
