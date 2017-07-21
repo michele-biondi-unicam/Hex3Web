@@ -26,7 +26,7 @@ hexTreWebApp.config(function($locationProvider, $routeProvider) {
         templateUrl : "/views/register/registerProfessor.html",
         controller : "registerCtrl"
     })
-    .when("/homepageuser", {
-        templateUrl : "/views/homepage/homepageUser.html"
+    .when("/homepagesignedin", {
+        templateUrl : "/views/homepage/homepageSignedIn.html"
     });
 });

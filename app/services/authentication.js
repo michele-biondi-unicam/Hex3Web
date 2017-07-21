@@ -3,6 +3,10 @@ var hexTreWebApp = angular.module("hexTreWeb");
 hexTreWebApp.service('AuthenticationService', ['$q','$http', function($q, $http){
         
         //============ FUNCTIONS ==============//
+        /* Function: login(username,password)
+        |  -success:Authenticates the user and returns it's token   
+        |  -fail: returns the error
+        */
         this.login = function(username, password){
             var deferred = $q.defer();
 
