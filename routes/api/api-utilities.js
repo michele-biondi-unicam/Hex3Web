@@ -61,8 +61,12 @@ this.login = function(username, psw)
                                     config.secret, 
                                     {expiresIn: 1440}
                                  );
+               var result = {
+                 'token': token,
+                 'role': user.role
+               };
                // return the information including token as JSON
-               deferred.resolve(token);
+               deferred.resolve(result);
           }   
         }
       })

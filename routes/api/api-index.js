@@ -16,20 +16,21 @@ apiRoutes.post('/authenticate', function(req, res)
            {
               var username = req.body.username;
               var psw  = req.body.password;
-               // controllo parametri
+               // checking parameters
               if (!username || !psw)
                   {
                     return res.status(400).json({ success: false, 
                                                    code:     api_utilities.ERR_API_NOT_FOUND,
                                                    message: 'Bad Request. username and password required.' }); 
                   }
-               // esecuzione funzione
+               // execution
               api_utilities.login(username, psw)
-                    .then(function(token)
+                    .then(function(result)
                       {
                         res.status(201).json({success: true, 
-                                              message: 'Enjoy your token!', 
-                                              data: {'token':token}});
+                                              message: 'Enjoy your token, ' + result.role + '!',
+                                              data: {token: result.token,
+                                                     role:result.role }});
                       })
                     .catch(function(err)
                       { res.status(400).json({ success: false, 
@@ -51,14 +52,14 @@ apiRoutes.post('/signup', function(req, res)
               var surname = req.body.surname;
               var psw  = req.body.password;
               var role = req.body.role;
-              // controllo parametri
+              // parameters check
               if (!username || !psw || !role)
                   {
                     return res.status(400).json({ success: false, 
                                                   code:api_utilities.ERR_MISSING_DATA,
                                                   message: 'Bad Request. username, role and password required.' });
                   } 
-               // esecuzione funzione    
+               // execution    
               api_utilities.addUser(username, name, surname, psw, role)
                     .then(function(user)
                       {
