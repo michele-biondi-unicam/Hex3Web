@@ -14,9 +14,9 @@ hexTreWebApp.controller('loginCtrl', ['$scope','$location', 'AuthenticationServi
         }
 
         AuthenticationService.login($scope.username, $scope.password)
-        .then(function(data){
-            console.log(data);
-            //alert('User' + data.name + 'Logged' + JSON.stringify(data));
+        .then(function(response){
+            console.log(response);
+            alert('LOGIN SUCCESSFUL, response: '+ JSON.stringify(response));
             $location.path('/homepageuser');
         })
         .catch(function(err){
