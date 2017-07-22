@@ -19,7 +19,7 @@ hexTreWebApp.controller('loginCtrl', ['$scope','$rootScope','$location', 'Authen
             $rootScope.jwtToken = response.data.token;
             $rootScope.userRole = response.data.role;
             $rootScope.authenticated = true;
-            $location.path('/');
+            $location.path('/redirect');
         })
         .catch(function(err){
             alert("Username o password errati");
