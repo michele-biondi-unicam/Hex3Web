@@ -6,7 +6,8 @@ hexTreWebApp.config(function($locationProvider, $routeProvider) {
     // ======= AngularJS Routes ========//
     $routeProvider
     .when("/", {
-        templateUrl : "/views/homepage/homepage.html"
+        templateUrl : "/views/homepage/homepage.html",
+        controller : "homepageCtrl"
     })
     .when("/login", {
         templateUrl : "/views/login/login.html",
@@ -25,8 +26,5 @@ hexTreWebApp.config(function($locationProvider, $routeProvider) {
     .when("/registerprofessor", {
         templateUrl : "/views/register/registerProfessor.html",
         controller : "registerCtrl"
-    })
-    .when("/homepagesignedin", {
-        templateUrl : "/views/homepage/homepageSignedIn.html"
     });
 });
