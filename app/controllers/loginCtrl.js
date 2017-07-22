@@ -15,6 +15,7 @@ hexTreWebApp.controller('loginCtrl', ['$scope','$rootScope','$location', 'Authen
 
         AuthenticationService.login($scope.username, $scope.password)
         .then(function(response){
+            // Saved token for successive requests and role to change view.
             $rootScope.jwtToken = response.data.token;
             $rootScope.userRole = response.data.role;
             $rootScope.authenticated = true;
