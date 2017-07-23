@@ -13,13 +13,33 @@ var User = mongoose.model('User', new Schema({
     surname : String,
     //TODO Replace password in the future with hash
     password : {
-        type: String,
+        type : String,
         minlength: 5
     },
     role : {
-        type: String,
-        enum: ['admin', 'student', 'professor'],
-        required: true
+        type : String,
+        enum : ['admin', 'student', 'professor'],
+        required : true
+    },
+    course : { // For students
+        title : String,
+        year: Date,
+        courses : [{ //N.B it is an array
+            name : String,
+            code: Number, //Identificator of the course
+            CFU : Number,
+            passed : Boolean,
+            vote : {type: Number, min: 18, max: 30}
+        }]
+    },
+    teachings : { // For professors
+        courses : [{ //N.B it is an array
+            name : String,
+            code: Number, //Identificator of the course
+            CFU : Number,
+            passed : Boolean,
+            vote : {type: Number, min: 18, max: 30}
+        }]
     }
 }));
 
