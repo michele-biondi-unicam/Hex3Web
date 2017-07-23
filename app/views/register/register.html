@@ -2,7 +2,7 @@
 
     <div id="register-form">
         <form class="w3-container w3-round w3-card-4 w3-white w3-margin">
-            <h2 class="w3-center">Registrazione studente</h2>
+            <h2 class="w3-center">Registrazione utente</h2>
             <div class="w3-animate-opacity">
                 <div class="w3-row w3-section">
                     <div class="w3-col register-icon"><i class="w3-xxlarge fa fa-user"></i></div>
@@ -41,25 +41,13 @@
                         <input ng-class="{'w3-red': red}" ng-model="passwordConfirm" ng-change="check_password_match()" class="w3-input w3-border" name="password-confirm" type="password" placeholder="Conferma password" required/>
                     </div>
                 </div>
-
-                <div class="w3-row w3-section">
-                    <div class="w3-col register-icon"><i class="w3-xxlarge fa fa-university"></i></div>
-                    <div class="w3-rest">
-                        <select class="w3-select w3-border" name="course" required>
-                            <option value="" disabled selected>Corso di laurea</option>
-                            <option value="1">Penetration Testing</option>
-                            <option value="2">Reverse Engineering</option>
-                            <option value="3">Malware Programming</option>
-                        </select>
-                    </div>
-                </div>
             </div>
 
 
             <input class="w3-radio" type="radio" name="role" value="student" checked />
             <label>Studente</label>
 
-            <input class="w3-radio" type="radio" name="role" value="professor" onclick="window.location.href='#!registerprofessor'" />
+            <input class="w3-radio" type="radio" name="role" value="professor" />
             <label>Docente</label>
 
             <div class="w3-row w3-section w3-center">
