@@ -50,17 +50,17 @@ apiRoutes.post('/signup', function(req, res)
               var username = req.body.username;
               var name = req.body.name;
               var surname = req.body.surname;
-              var psw  = req.body.password;
+              var password  = req.body.password;
               var role = req.body.role;
               // parameters check
-              if (!username || !psw || !role)
+              if (!username || !password || !role)
                   {
                     return res.status(400).json({ success: false, 
                                                   code:api_utilities.ERR_MISSING_DATA,
                                                   message: 'Bad Request. username, role and password required.' });
                   } 
                // execution    
-              api_utilities.addUser(username, name, surname, psw, role)
+              api_utilities.addUser(username, name, surname, password, role)
                     .then(function(user)
                       {
                        res.status(201).json({ success: true , msg:"user saved", data:user});

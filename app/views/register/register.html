@@ -44,14 +44,14 @@
             </div>
 
 
-            <input class="w3-radio" type="radio" name="role" value="student" checked />
+            <input ng-model="role" class="w3-radio" type="radio" name="role" value="student" checked />
             <label>Studente</label>
 
-            <input class="w3-radio" type="radio" name="role" value="professor" />
+            <input ng-model="role" class="w3-radio" type="radio" name="role" value="professor" />
             <label>Docente</label>
 
             <div class="w3-row w3-section w3-center">
-                <button ng-disabled="enabled == false" class="w3-button w3-blue w3-ripple w3-padding">Registrati</button>
+                <button ng-click="register()" ng-disabled="enabled == false" class="w3-button w3-blue w3-ripple w3-padding">Registrati</button>
             </div>
 
 

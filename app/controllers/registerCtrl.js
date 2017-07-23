@@ -1,6 +1,6 @@
 var hexTreWebApp = angular.module("hexTreWeb");
 
-hexTreWebApp.controller('registerCtrl', ['$scope' ,function($scope){
+hexTreWebApp.controller('registerCtrl', ['$scope','RegistrationService' ,function($scope, RegistrationService){
     $scope.enabled = true;
     $scope.red = false;
 
@@ -38,6 +38,20 @@ hexTreWebApp.controller('registerCtrl', ['$scope' ,function($scope){
             $scope.username = $scope.name.toLowerCase() + "." + $scope.surname.toLowerCase();
         } 
     };
+
+    /*
+        Function name: register()
+        Registers a new user. 
+    */
+    $scope.register = function(){
+        RegistrationService.register($scope.name, $scope.surname, $scope.username, $scope.password, $scope.role)
+        .then(function(response){
+            alert("Registrazione riuscita!");
+        })
+        .catch(function(err){
+            alert("Registrazione non riuscita, ricontrolla i dati");
+        });
+    }
 
     
 }]);
