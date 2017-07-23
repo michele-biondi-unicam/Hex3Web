@@ -30,7 +30,7 @@
                 <div class="w3-row w3-section">
                     <div class="w3-col register-icon"><i class="w3-xxlarge fa fa-lock"></i></div>
                     <div class="w3-rest">
-                        <input ng-model="password" ng-change="check_password_match()" class="w3-input w3-border" name="password" type="password" placeholder="Password" required />
+                        <input ng-model="password" ng-change="check_password_match_and_length()" class="w3-input w3-border" name="password" type="password" placeholder="Password (Minimo 5 Caratteri)" required />
                     </div>
                 </div>
 
@@ -38,13 +38,13 @@
                     <!-- Empty icon-->
                     <div class="w3-col register-icon"><i class="w3-xxlarge fa"></i></div>
                     <div class="w3-rest">
-                        <input ng-class="{'w3-red': red}" ng-model="passwordConfirm" ng-change="check_password_match()" class="w3-input w3-border" name="password-confirm" type="password" placeholder="Conferma password" required/>
+                        <input ng-class="{'w3-red': red}" ng-model="passwordConfirm" ng-change="check_password_match_and_length()" class="w3-input w3-border" name="password-confirm" type="password" placeholder="Conferma password" required/>
                     </div>
                 </div>
             </div>
 
 
-            <input ng-model="role" class="w3-radio" type="radio" name="role" value="student" checked />
+            <input ng-model="role" class="w3-radio" type="radio" name="role" value="student" />
             <label>Studente</label>
 
             <input ng-model="role" class="w3-radio" type="radio" name="role" value="professor" />
