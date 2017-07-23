@@ -14,22 +14,23 @@ module.exports = apiRoutes;
 */
 apiRoutes.post('/authenticate', function(req, res)
            {
-              var name = req.body.name;
+              var username = req.body.username;
               var psw  = req.body.password;
-               // controllo parametri
-              if (!name || !psw)
+               // checking parameters
+              if (!username || !psw)
                   {
                     return res.status(400).json({ success: false, 
                                                    code:     api_utilities.ERR_API_NOT_FOUND,
-                                                   message: 'Bad Request. name and password required.' }); 
+                                                   message: 'Bad Request. username and password required.' }); 
                   }
-               // esecuzione funzione
-              api_utilities.login(name, psw)
-                    .then(function(token)
+               // execution
+              api_utilities.login(username, psw)
+                    .then(function(result)
                       {
                         res.status(201).json({success: true, 
-                                              message: 'Enjoy your token!', 
-                                              data: {'token':token}});
+                                              message: 'Enjoy your token, ' + result.role + '!',
+                                              data: {token: result.token,
+                                                     role:result.role }});
                       })
                     .catch(function(err)
                       { res.status(400).json({ success: false, 
@@ -46,17 +47,20 @@ apiRoutes.post('/authenticate', function(req, res)
 */
 apiRoutes.post('/signup', function(req, res)
             {
+              var username = req.body.username;
               var name = req.body.name;
-              var psw  = req.body.password;
-              // controllo parametri
-              if (!name || !psw)
+              var surname = req.body.surname;
+              var password  = req.body.password;
+              var role = req.body.role;
+              // parameters check
+              if (!username || !password || !role)
                   {
                     return res.status(400).json({ success: false, 
                                                   code:api_utilities.ERR_MISSING_DATA,
-                                                  message: 'Bad Request. name and password required.' });  
+                                                  message: 'Bad Request. username, role and password required.' });
                   } 
-               // esecuzione funzione    
-              api_utilities.addUser(name, psw)
+               // execution    
+              api_utilities.addUser(username, name, surname, password, role)
                     .then(function(user)
                       {
                        res.status(201).json({ success: true , msg:"user saved", data:user});

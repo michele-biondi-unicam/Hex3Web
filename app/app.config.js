@@ -6,10 +6,12 @@ hexTreWebApp.config(function($locationProvider, $routeProvider) {
     // ======= AngularJS Routes ========//
     $routeProvider
     .when("/", {
-        templateUrl : "/views/homepage/homepage.html"
+        templateUrl : "/views/homepage/homepage.html",
+        controller : "homepageCtrl"
     })
     .when("/login", {
-        templateUrl : "/views/login/login.html"
+        templateUrl : "/views/login/login.html",
+        controller : "loginCtrl"
     })
     .when("/faq", {
         templateUrl : "/views/faq/faq.html"
@@ -17,12 +19,16 @@ hexTreWebApp.config(function($locationProvider, $routeProvider) {
     .when("/contactus", {
         templateUrl : "/views/contactus/contactus.html"
     })
-    .when("/registerstudent", {
-        templateUrl : "/views/register/registerStudent.html",
+    .when("/register", {
+        templateUrl : "/views/register/register.html",
         controller : "registerCtrl"
     })
     .when("/registerprofessor", {
         templateUrl : "/views/register/registerProfessor.html",
         controller : "registerCtrl"
+    })
+    .when("/redirect", {
+        templateUrl : "/views/redirect/redirect.html",
+        controller : "redirectCtrl"
     });
 });

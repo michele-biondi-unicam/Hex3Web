@@ -15,13 +15,13 @@ module.exports = admin_utilities;
     Adds the default admin
 */
 this.addDefaultUser = function () {
-    var default_name = config['default-admin-name'];
+    var default_name = config['default-admin-username'];
     var default_psw = config['default-admin-psw'];
     return db_utilities.addUser({
-        name: default_name,
+        username: default_name,
         password: default_psw,
-        admin: true
-    });  // N.B returns a promise 
+        role: 'admin'
+    });  // N.B returns a promise
 
 }
 
@@ -67,9 +67,9 @@ this.checkToken = function(token)
       else 
       {
         //  Checks if the user is admin
-        var is_admin = decoded['_doc'].admin;
-        logger.debug("Am i admin?  "+is_admin);
-        if (is_admin)
+        var user_role = decoded['_doc'].role;
+        logger.debug("Am i admin?  Role: "+ user_role);
+        if (user_role == 'admin')
             { deferred.resolve(decoded);} // is admin, return the token
         else
             {

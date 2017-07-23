@@ -15,16 +15,8 @@ var ERR_DB_DUPLICATE_KEY = '11000';
 this.addUser = function (user) {
     var deferred = q.defer();
 
-    //TODO Implement this in mongoose Schema
-    if (!user.password || user.password == "" || user.password.length < 4) {
-        deferred.reject('la password deve avere almeno 4 caratteri');
-        return deferred.promise;
-    }
-    if (!user.admin)
-    { user.admin = false; }
-
     // creates a user that has to respect the mongoose Schema
-    var generatedUser = new User(user);
+    var generatedUser = new User(user); 
 
     // save the sample user
     generatedUser.save()
@@ -40,8 +32,12 @@ this.addUser = function (user) {
                 });
             }
             else
-            { logger.error('[addUser] errore salvataggio utente ' + err.errmsg); }
-            deferred.reject(err.errmsg);
+            { logger.error('[addUser] ERROR: ' + err.message); }
+            //deferred.reject(err.errmsg);
+             deferred.reject({
+                    code: 'ERR_VALIDATION_NOT_PASSED',
+                    msg: err.message
+                });
         });
     return deferred.promise;
 }
