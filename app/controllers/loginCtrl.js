@@ -1,6 +1,6 @@
 var hexTreWebApp = angular.module("hexTreWeb");
 
-hexTreWebApp.controller('loginCtrl', ['$scope','$location', 'AuthenticationService', function($scope, $location, AuthenticationService){
+hexTreWebApp.controller('loginCtrl', ['$scope','$rootScope','$location', 'AuthenticationService', function($scope, $rootScope, $location, AuthenticationService){
     $scope.username = "";
     $scope.password = "";
 
@@ -14,16 +14,17 @@ hexTreWebApp.controller('loginCtrl', ['$scope','$location', 'AuthenticationServi
         }
 
         AuthenticationService.login($scope.username, $scope.password)
-        .then(function(data){
-            console.log(data);
-            //alert('User' + data.name + 'Logged' + JSON.stringify(data));
-            $location.path('/homepageuser');
+        .then(function(response){
+            // Save token for successive requests and role to change view.
+            $rootScope.jwtToken = response.data.token;
+            $rootScope.userRole = response.data.role;
+            $rootScope.authenticated = true;
+            $location.path('/redirect');
         })
         .catch(function(err){
-            alert("Username o password errati")
+            alert("Username o password errati");
 
-            //I reset inputs forms
-            $scope.username = undefined;
+            //I reset password input form
             $scope.password = undefined;
         });
     }

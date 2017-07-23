@@ -2,32 +2,26 @@ var hexTreWebApp = angular.module("hexTreWeb");
 
 hexTreWebApp.service('AuthenticationService', ['$q','$http', function($q, $http){
         
-        var self = this;
-        this.loggedUser; // Contains the logged user
-
-
-
         //============ FUNCTIONS ==============//
-        this.login = function(name, password){
+        /* Function: login(username,password)
+        |  -success:Authenticates the user and returns it's token   
+        |  -fail: returns the error
+        */
+        this.login = function(username, password){
             var deferred = $q.defer();
 
             $http({
                 method: 'POST',
                 url: 'http://localhost:8080/api/authenticate',
-                data: {'name':name, 'password':password}
+                data: {'username':username, 'password':password}
             })
-            .then(function(data){
-                self.loggedUser = data;
-                deferred.resolve(data);
+            .then(function(response){
+                deferred.resolve(response.data);
             })
             .catch(function(err, code){
-                self.loggedUser = undefined; // user reset
                 deferred.reject(err);
             });
             
             return deferred.promise;
         }
 }]).run(function(AuthenticationService){});
-
-
-/* To use the token in a request use self.loggedUser.token */
