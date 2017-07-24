@@ -30,5 +30,17 @@ hexTreWebApp.config(function($locationProvider, $routeProvider) {
     .when("/redirect", {
         templateUrl : "/views/redirect/redirect.html",
         controller : "redirectCtrl"
+    })
+    .when("/forbidden", {
+        templateUrl : "/views/forbidden/forbidden.html"
+    })
+    .when("/studentcareer", {
+        templateUrl : "/views/student/studentCareer.html"
+    })
+    .when("/studentexams", {
+        templateUrl : "/views/student/studentExams.html"
+    })
+    .when("/studentstages", {
+        templateUrl : "/views/student/studentStages.html"
     });
 });
