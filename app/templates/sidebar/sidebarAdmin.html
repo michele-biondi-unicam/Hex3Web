@@ -2,18 +2,19 @@
         <br>
         <div class="w3-container">
             <h4>Benvenuto</h4>
-            <h6>Accedi alla piattaforma.</h6>
         </div>
-
-        <hr />
 
         <div class="w3-bar-block">
             <a ng-click="sidebarClose()" href="" class="w3-bar-item w3-button w3-padding-16 w3-hide-large w3-dark-grey w3-hover-white" title="close menu">
-                <i class="fa fa-remove fa-fw"></i>&nbsp; Chiudi Menù
+                <i class="fa fa-remove fa-fw"></i>&nbsp; Chiudi menù
             </a>
-            <a href="#!/login" class="w3-bar-item w3-button w3-padding w3-red"><i class="fa fa-user fa-fw"></i>&nbsp; Accedi/Registrati</a>
+            <a href="" ng-click="logout()" class="w3-bar-item w3-button w3-padding w3-blue"><i class="fa fa-user fa-fw"></i>&nbsp; Logout</a>
+            <hr /> <!-- Break between logout and admin buttons -->
+            <a href="#!/studentcareer" class="w3-bar-item w3-button w3-padding"><i class="fa fa-user-circle fa-fw"></i>&nbsp; Modifica utenti</a>
+            <a href="#!/studentexams" class="w3-bar-item w3-button w3-padding"><i class="fa fa-gears fa-fw"></i>&nbsp; Modifica stage</a>
+            <a href="#!/studentstages" class="w3-bar-item w3-button w3-padding"><i class="fa fa-file-text fa-fw"></i>&nbsp; Modifica piani di studio</a>
+            <hr /> <!-- Break between admin and general buttons -->
             <a href="#!/faq" class="w3-bar-item w3-button w3-padding"><i class="fa fa-question-circle fa-fw"></i>&nbsp; FAQ</a>
-            <a href="#!/contactus" class="w3-bar-item w3-button w3-padding"><i class="fa fa-envelope-open fa-fw"></i>&nbsp; Contattaci</a>
             <a href="https://github.com/michele-biondi-unicam/Hex3Web" class="w3-bar-item w3-button"><i class="fa fa-github-alt fa-fw"></i>&nbsp; Contribuisci</a>
 
             <!-- Fix for a bug that doesn't display the last item of the sidebar on small screens -->

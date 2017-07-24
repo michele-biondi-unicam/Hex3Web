@@ -4,10 +4,12 @@ hexTreWebApp.controller('sidebarCtrl', ['$scope','$location','$rootScope',functi
     $scope.$on('$locationChangeSuccess', function() {
         if($rootScope.userRole == "student"){
             $scope.sidebarTemplate = '/templates/sidebar/sidebarStudent.html';
-        } else if($rootScope.authenticated){
-            $scope.sidebarTemplate = '/templates/sidebar/sidebarSignedIn.html';
+        } else if($rootScope.userRole == "professor"){
+            $scope.sidebarTemplate = '/templates/sidebar/sidebarProfessor.html';
+        } else  if($rootScope.userRole == "admin"){
+            $scope.sidebarTemplate = '/templates/sidebar/sidebarAdmin.html';
         } else {
-            $scope.sidebarTemplate = '/templates/sidebar/sidebarNotSignedIn.html';
+             $scope.sidebarTemplate = '/templates/sidebar/sidebarNotSignedIn.html';
         }
     });
 
