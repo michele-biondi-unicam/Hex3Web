@@ -42,5 +42,23 @@ hexTreWebApp.config(function($locationProvider, $routeProvider) {
     })
     .when("/studentstages", {
         templateUrl : "/views/student/studentStages.html"
+    })
+    .when("/professorcourses", {
+        templateUrl : "/views/professor/professorCourses.html"
+    })
+    .when("/professorexams", {
+        templateUrl : "/views/professor/professorExams.html"
+    })
+    .when("/professorstages", {
+        templateUrl : "/views/professor/professorStages.html"
+    })
+    .when("/admincareerchange", {
+        templateUrl : "/views/admin/adminCareerChange.html"
+    })
+    .when("/adminstagechange", {
+        templateUrl : "/views/admin/adminStageChange.html"
+    })
+    .when("/adminuserchange", {
+        templateUrl : "/views/admin/adminUserChange.html"
     });
 });
