@@ -11,11 +11,7 @@ var User = mongoose.model('User', new Schema({
     },
     name : String,
     surname : String,
-    //TODO Replace password in the future with hash
-    password : {
-        type : String,
-        minlength: 5
-    },
+    passwordhash : String,
     role : {
         type : String,
         enum : ['admin', 'student', 'professor'],

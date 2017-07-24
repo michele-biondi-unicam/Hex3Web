@@ -15,16 +15,16 @@ module.exports = apiRoutes;
 apiRoutes.post('/authenticate', function(req, res)
            {
               var username = req.body.username;
-              var psw  = req.body.password;
+              var password  = req.body.password;
                // checking parameters
-              if (!username || !psw)
+              if (!username || !password)
                   {
                     return res.status(400).json({ success: false, 
                                                    code:     api_utilities.ERR_API_NOT_FOUND,
                                                    message: 'Bad Request. username and password required.' }); 
                   }
                // execution
-              api_utilities.login(username, psw)
+              api_utilities.login(username, password)
                     .then(function(result)
                       {
                         res.status(201).json({success: true, 

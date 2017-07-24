@@ -4,7 +4,7 @@ var express = require('express');
 // Initialize express
 var app = express();
 
-
+var bcrypt = require('bcrypt'); // hashing password on the database
 var bodyParser = require("body-parser"); // get POST parameters
 var morgan = require('morgan');    // automatic log of HTTP requests
 var q = require('q');          // Q promise

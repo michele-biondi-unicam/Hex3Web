@@ -2,6 +2,7 @@ var jwt = require('jsonwebtoken');        // used to create, sign, and verify to
 var User = require('../../models/user');   // get our mongoose User model
 var q = require('q');                   // Q promise
 var config = require('../../config');        // get our config file
+var bcrypt = require('bcrypt');
 
 var db_utilities = require('../db-utilities');
 
@@ -17,11 +18,13 @@ module.exports = admin_utilities;
 this.addDefaultUser = function () {
     var default_name = config['default-admin-username'];
     var default_psw = config['default-admin-psw'];
-    return db_utilities.addUser({
-        username: default_name,
-        password: default_psw,
-        role: 'admin'
-    });  // N.B returns a promise
+    bcrypt.hash(default_psw, 10).then(function(hash){
+            return db_utilities.addUser({
+            username: default_name,
+            passwordhash: hash,
+            role: 'admin'
+        });  // N.B returns a promise
+    });
 
 }
 
