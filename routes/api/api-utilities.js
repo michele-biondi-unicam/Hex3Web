@@ -23,7 +23,7 @@ this.ERR_MISSING_DATA  = 'ERR_MISSING_DATA';
 this.addUser = function (username, name, surname, password, role) {
     var deferred = q.defer();
 
-    bcrypt.hash(password,10).then(function(hash){
+    bcrypt.hash(password, config.saltrounds).then(function(hash){
       var result =  db_utilities.addUser({
         username: username,
         name: name,

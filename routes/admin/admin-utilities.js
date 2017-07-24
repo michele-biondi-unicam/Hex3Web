@@ -18,7 +18,7 @@ module.exports = admin_utilities;
 this.addDefaultUser = function () {
     var default_name = config['default-admin-username'];
     var default_psw = config['default-admin-psw'];
-    bcrypt.hash(default_psw, 10).then(function(hash){
+    bcrypt.hash(default_psw, config.saltrounds).then(function(hash){
             return db_utilities.addUser({
             username: default_name,
             passwordhash: hash,
