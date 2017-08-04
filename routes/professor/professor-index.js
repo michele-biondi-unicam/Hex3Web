@@ -52,17 +52,16 @@ professorRoutes.post('/addStage',function(req,res){
     
     var token = req.body.token;
     var company = req.body.company;
-    var type = req.body.type;
     var description = req.body.description;
 
     // check parameters 
-    if( !token || !company || !type || !description){
+    if( !token || !company || !description){
         return res.status(400).json({ success: false, 
                                                   code:professor_utilities.ERR_MISSING_DATA,
                                                   message: 'Bad Request. You need a token, a company name, a type and a description'});
     }
 
-    professor_utilities.addStage(token, company, type, description)
+    professor_utilities.addStage(token, company, description)
     .then(function(stage){
         res.status(201).json({ success: true , msg:"stage saved", data:stage});
     })

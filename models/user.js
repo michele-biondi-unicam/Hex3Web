@@ -28,7 +28,6 @@ var User = mongoose.model('User', new Schema({
         }],
         stage : { //N.B it is an array
             company : String,
-            type : String,
             description : String,
             professor: String,
             start : Date,
@@ -41,9 +40,8 @@ var User = mongoose.model('User', new Schema({
             name : String,
             CFU : Number
         }],
-        stage : [{ //N.B it is an array
+        stages : [{ //N.B it is an array
             company : String,
-            type : String,
             description : String,
             professor: String
         }]

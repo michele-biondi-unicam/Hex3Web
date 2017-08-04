@@ -62,7 +62,7 @@ this.checkToken = function(token)
     function: addStage(token, company, type, description)
     Adds a stage to the database
 */
-this.addStage = function(token, company, type, description){
+this.addStage = function(token, company, description){
     var deferred = q.defer();
 
     if(token){
@@ -72,9 +72,8 @@ this.addStage = function(token, company, type, description){
           deferred.reject(false);
         } else {
           var professorUsername = decoded._doc.username;
-          var result = db_utilities.addStage({
+          var result = db_utilities.addStage(professorUsername, {
             company : company ,
-            type : type,
             description : description,
             professor: professorUsername
           });

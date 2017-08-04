@@ -47,7 +47,7 @@ this.addUser = function (user) {
     function: addStage(stage)
     adds a stage to the database
 */
-this.addStage = function(stage){
+this.addStage = function(username, stage){
     var deferred = q.defer();
 
     //Creates a stage that has to respect the mongoose Schema
@@ -74,5 +74,20 @@ this.addStage = function(stage){
                     msg: err.message
                 });
         });
+    
+    //Copies the new generated stage inside the professor
+    User.findOneAndUpdate({username: username}, {$push : {"teachings.stages" : {
+                                    company : generatedStage.company,
+                                    description : generatedStage.description,
+                                    professor: generatedStage.professor,
+                                    _id: generatedStage._id } }}, 
+                            {upsert: true}) 
+        .then(function(){
+            logger.debug("Professor updated too");
+        })
+        .catch(function(err){
+            logger.debug("Error occurred while updating professor");
+        });
+
     return deferred.promise;
 };
