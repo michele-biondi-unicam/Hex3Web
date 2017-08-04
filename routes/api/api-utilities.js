@@ -37,7 +37,7 @@ this.addUser = function (username, name, surname, password, role) {
 
     return deferred.promise;
     
-}
+};
 
 /*
     function login(name, psw)
@@ -85,4 +85,4 @@ this.login = function(username, password)
          deferred.reject({code:"", msg:err}); 
         }); 
  return deferred.promise;
-}
+};

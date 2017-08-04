@@ -17,24 +17,33 @@ var User = mongoose.model('User', new Schema({
         enum : ['admin', 'student', 'professor'],
         required : true
     },
-    course : { // For students
+    studyplan : { // For students
         title : String,
         year: Date,
         courses : [{ //N.B it is an array
             name : String,
-            code: Number, //Identificator of the course
             CFU : Number,
             passed : Boolean,
             vote : {type: Number, min: 18, max: 30}
-        }]
+        }],
+        stage : { //N.B it is an array
+            company : String,
+            description : String,
+            professor: String,
+            start : Date,
+            finish : Date,
+            vote : {type: Number, min: 18, max: 30}
+        }
     },
     teachings : { // For professors
         courses : [{ //N.B it is an array
             name : String,
-            code: Number, //Identificator of the course
-            CFU : Number,
-            passed : Boolean,
-            vote : {type: Number, min: 18, max: 30}
+            CFU : Number
+        }],
+        stages : [{ //N.B it is an array
+            company : String,
+            description : String,
+            professor: String
         }]
     }
 }));

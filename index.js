@@ -86,6 +86,17 @@ app.use(morgan('dev'));  // dev is the level of log (development)
 var adminRoutes = require('./routes/admin/admin-index');
 app.use('/admin', adminRoutes);   // put /admin as prefix
 
+/*
+    STUDENT ROUTES
+*/
+var studentRoutes = require('./routes/student/student-index');
+app.use('/student', studentRoutes);   // put /student as prefix
+
+/*
+    PROFESSOR ROUTES
+*/
+var professorRoutes = require('./routes/professor/professor-index');
+app.use('/professor', professorRoutes);   // put /professor as prefix
 
 /*
     API ROUTES

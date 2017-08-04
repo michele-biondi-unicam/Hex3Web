@@ -4,7 +4,6 @@ var config      = require('../../config');    // get our config file
 
 var api_utilities = require('./api-utilities');
 
-var adminRoutes = express.Router(); 
 var apiRoutes = express.Router();
 module.exports = apiRoutes;
 
@@ -43,7 +42,7 @@ apiRoutes.post('/authenticate', function(req, res)
 
 /*
   Signup of a user, params:
-   { name:"", password:""}  
+   { name:"",surname:"",username:"", password:"",role:""}  
 */
 apiRoutes.post('/signup', function(req, res)
             {

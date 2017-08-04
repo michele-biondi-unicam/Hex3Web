@@ -50,7 +50,7 @@ this.getAllUsers = function () {
 
 /* 
     function:  checkToken(token)
-    check if the token is valid, and if the user has the 'Admin' role 
+    check if the token is valid, and if the user has the 'admin' role 
 -   if it's admin, return the decoded data
 -   else return false
 */
@@ -89,5 +89,5 @@ this.checkToken = function(token)
     deferred.reject(false);
   }
  return deferred.promise;
-}
+};
 
