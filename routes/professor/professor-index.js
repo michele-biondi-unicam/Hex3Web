@@ -72,3 +72,18 @@ professorRoutes.post('/addStage',function(req,res){
                                data:""}); 
     });
 });
+
+professorRoutes.get('/getStages', function(req,res){
+    var token = req.param('token');
+    logger.debug("This is the token: " + token);
+    professor_utilities.getStages(token)
+    .then(function(stages){
+        res.status(201).json({ success: true , msg:"These are your stages", data:stages});
+    })
+    .catch(function(err){
+        res.status(400).json({ success: false , 
+                               code:err.code,
+                               msg:err.msg, 
+                               data:""}); 
+    });
+});

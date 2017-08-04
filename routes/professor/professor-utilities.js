@@ -59,7 +59,7 @@ this.checkToken = function(token)
 };
 
 /*
-    function: addStage(token, company, type, description)
+    function: addStage(token, company, description)
     Adds a stage to the database
 */
 this.addStage = function(token, company, description){
@@ -88,4 +88,31 @@ this.addStage = function(token, company, description){
     }
 
     return deferred.promise;
+};
+
+/*
+   function: getStages(token)
+    returns all the stages of the professor
+*/
+this.getStages = function(token){
+    var deferred = q.defer();
+
+      if(token){
+        jwt.verify(token, config.secret, function(err, decoded){
+        if(err){
+          logger.error('token expired or not authenticated: '+token);
+          deferred.reject(false);
+        } else {
+            var stages = decoded._doc.teachings.stages;
+            logger.debug("STAGES:" + stages);
+            deferred.resolve(stages);
+
+          }
+        });
+      } else {
+        logger.debug('no token provided by professor');
+        deferred.reject(false);
+      }
+
+      return deferred.promise;
 };

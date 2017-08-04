@@ -26,7 +26,7 @@ var User = mongoose.model('User', new Schema({
             passed : Boolean,
             vote : {type: Number, min: 18, max: 30}
         }],
-        stage : { //N.B it is an array
+        stage : { 
             company : String,
             description : String,
             professor: String,
