@@ -103,9 +103,16 @@ this.getStages = function(token){
           logger.error('token expired or not authenticated: '+token);
           deferred.reject(false);
         } else {
-            var stages = decoded._doc.teachings.stages;
-            logger.debug("STAGES:" + stages);
-            deferred.resolve(stages);
+            var username = decoded._doc.username;
+            User.findOne({username: username})
+              .then(function(user){
+                var stages = user.teachings.stages;
+                deferred.resolve(stages);
+              })
+              .catch(function(err){
+                logger.error("Error occurred while getting the stages");
+                deferred.reject(false);
+              });
 
           }
         });
