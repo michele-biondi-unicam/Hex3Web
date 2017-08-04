@@ -93,6 +93,12 @@ var studentRoutes = require('./routes/student/student-index');
 app.use('/student', studentRoutes);   // put /student as prefix
 
 /*
+    PROFESSOR ROUTES
+*/
+var professorRoutes = require('./routes/professor/professor-index');
+app.use('/professor', professorRoutes);   // put /professor as prefix
+
+/*
     API ROUTES
 */
 var apiRoutes = require('./routes/api/api-index');
