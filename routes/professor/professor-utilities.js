@@ -8,6 +8,11 @@ var db_utilities = require('../db-utilities');
 var professor_utilities = this;
 module.exports = professor_utilities;
 
+//======================== ERROR CODES =====================//
+this.ERR_API_NOT_FOUND = 'ERR_API_NOT_FOUND';
+this.ERR_API_WRONG_PSW = 'ERR_API_WRONG_PSW';
+this.ERR_MISSING_DATA  = 'ERR_MISSING_DATA';
+
 //============ FUNCTIONS ===========//
 
 /* 
@@ -32,7 +37,7 @@ this.checkToken = function(token)
       else 
       {
         //  Checks if the user is professor
-        var user_role = decoded['_doc'].role;
+        var user_role = decoded._doc.role;
         logger.debug("Am i professor?  Role: "+ user_role);
         if (user_role == 'professor')
             { deferred.resolve(decoded);} // is professor, return the token
@@ -51,4 +56,37 @@ this.checkToken = function(token)
     deferred.reject(false);
   }
  return deferred.promise;
+};
+
+/*
+    function: addStage(token, company, type, description)
+    Adds a stage to the database
+*/
+this.addStage = function(token, company, type, description){
+    var deferred = q.defer();
+
+    if(token){
+      jwt.verify(token, config.secret, function(err, decoded){
+        if(err){
+          logger.error('token expired or not authenticated: '+token);
+          deferred.reject(false);
+        } else {
+          var professorUsername = decoded._doc.username;
+          var result = db_utilities.addStage({
+            company : company ,
+            type : type,
+            description : description,
+            professor: professorUsername
+          });
+
+          deferred.resolve(result);
+
+        }
+      });
+    } else {
+      logger.debug('no token provided');
+      deferred.reject(false);
+    }
+
+    return deferred.promise;
 };

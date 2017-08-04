@@ -22,14 +22,15 @@ var User = mongoose.model('User', new Schema({
         year: Date,
         courses : [{ //N.B it is an array
             name : String,
-            code: Number, //Identificator of the course
             CFU : Number,
             passed : Boolean,
             vote : {type: Number, min: 18, max: 30}
         }],
         stage : { //N.B it is an array
             company : String,
-            code : Number,
+            type : String,
+            description : String,
+            professor: String,
             start : Date,
             finish : Date,
             vote : {type: Number, min: 18, max: 30}
@@ -38,14 +39,13 @@ var User = mongoose.model('User', new Schema({
     teachings : { // For professors
         courses : [{ //N.B it is an array
             name : String,
-            code: Number, //Identificator of the course
             CFU : Number
         }],
         stage : [{ //N.B it is an array
             company : String,
-            code : Number,
             type : String,
-            description : String
+            description : String,
+            professor: String
         }]
     }
 }));
