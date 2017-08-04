@@ -89,5 +89,5 @@ this.checkToken = function(token)
     deferred.reject(false);
   }
  return deferred.promise;
-}
+};
 

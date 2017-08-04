@@ -51,7 +51,7 @@ this.checkToken = function(token)
     deferred.reject(false);
   }
  return deferred.promise;
-}
+};
 
 
 /*
@@ -81,4 +81,4 @@ this.getCourses = function (token){
     }
 
     return deferred.promise;
-}
+};

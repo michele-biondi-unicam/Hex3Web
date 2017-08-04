@@ -40,6 +40,6 @@ this.addUser = function (user) {
                 });
         });
     return deferred.promise;
-}
+};
 
 
