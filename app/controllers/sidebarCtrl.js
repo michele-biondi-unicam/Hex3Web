@@ -19,11 +19,11 @@ hexTreWebApp.controller('sidebarCtrl', ['$scope','$location','$rootScope',functi
         $rootScope.userRole = "";
         $rootScope.authenticated = false;
         $location.path("/redirect");
-    }
+    };
 
     $scope.sidebarClose = function(){
         var mySidebar = document.getElementById("sidebar");
         mySidebar.style.display = "none";
-    }
+    };
 
 }]);

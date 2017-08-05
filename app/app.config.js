@@ -50,7 +50,8 @@ hexTreWebApp.config(function($locationProvider, $routeProvider) {
         templateUrl : "/views/professor/professorExams.html"
     })
     .when("/professorstages", {
-        templateUrl : "/views/professor/professorStages.html"
+        templateUrl : "/views/professor/professorStages.html",
+        controller : "professorStagesCtrl"
     })
     .when("/admincareerchange", {
         templateUrl : "/views/admin/adminCareerChange.html"

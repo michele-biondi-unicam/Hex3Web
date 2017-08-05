@@ -23,5 +23,5 @@ hexTreWebApp.service('AuthenticationService', ['$q','$http', function($q, $http)
             });
             
             return deferred.promise;
-        }
+        };
 }]).run(function(AuthenticationService){});

@@ -60,7 +60,7 @@ hexTreWebApp.controller('registerCtrl', ['$scope','RegistrationService' ,functio
         .catch(function(err){
             alert("Registrazione non riuscita, ricontrolla i dati");
         });
-    }
+    };
 
     
 }]);

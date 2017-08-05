@@ -27,5 +27,5 @@ hexTreWebApp.controller('loginCtrl', ['$scope','$rootScope','$location', 'Authen
             //I reset password input form
             $scope.password = undefined;
         });
-    }
+    };
 }]);

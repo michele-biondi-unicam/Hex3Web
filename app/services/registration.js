@@ -26,5 +26,5 @@ hexTreWebApp.service('RegistrationService', ['$q','$http', function($q, $http){
             });
 
             return deferred.promise;
-        }
+        };
 }]).run(function(RegistrationService){});
