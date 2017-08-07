@@ -17,3 +17,23 @@
     </form>
     
 </div>
+
+<div class="w3-row-padding w3-margin-bottom w3-margin-top">
+    <div class="w3-container w3-round w3-card-4 w3-white w3-margin">
+        <h1 class="w3-center">I tuoi stage : </h1>
+
+        <hr />
+
+        <div ng-repeat="stage in stages" class="w3-container w3-round w3-card-4 w3-lime w3-margin" >
+            <h1 class="w3-xxlarge"><i class="fa fa-building"></i>  {{stage.company}} </h1>
+            <p class="w3-small"> <b>Descrizione</b> : {{stage.description}} </p>
+            <p class="w3-tiny"> ID: {{stage._id}} </p>
+            <hr />
+        </div>
+    </div>
+
+    
+    
+
+    <div>
+</div>

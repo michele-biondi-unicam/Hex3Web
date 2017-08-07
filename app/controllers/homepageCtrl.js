@@ -8,10 +8,10 @@ hexTreWebApp.controller('homepageCtrl', ['$scope','$window',function($scope, $wi
             $scope.homePageTemplate = '/templates/homepage/homepageProfessor.html';
         } else if ($window.localStorage.getItem("userRole") == "admin"){ // Admin
             $scope.homePageTemplate = '/templates/homepage/homepageAdmin.html';
-        } else { // Altro
+        } else { // In case of bugs or bad manipulation: not signed homepage
             $scope.homePageTemplate = '/templates/homepage/homepageNotSignedIn.html';
         }
-    } else { // Non autenticato
+    } else { // Not authenticated
         $scope.homePageTemplate = '/templates/homepage/homepageNotSignedIn.html';
     }
 
