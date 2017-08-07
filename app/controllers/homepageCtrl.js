@@ -1,12 +1,12 @@
 var hexTreWebApp = angular.module("hexTreWeb");
 
-hexTreWebApp.controller('homepageCtrl', ['$scope','$rootScope',function($scope, $rootScope){
-    if($rootScope.authenticated){
-        if($rootScope.userRole == "student"){ // Studente
+hexTreWebApp.controller('homepageCtrl', ['$scope','$window',function($scope, $window){
+    if($window.localStorage.getItem("authenticated") == "true"){
+        if($window.localStorage.getItem("userRole") == "student"){ // Studente
             $scope.homePageTemplate = '/templates/homepage/homepageStudent.html';
-        } else if ($rootScope.userRole == "professor"){ // Professore
+        } else if ($window.localStorage.getItem("userRole") == "professor"){ // Professore
             $scope.homePageTemplate = '/templates/homepage/homepageProfessor.html';
-        } else if ($rootScope.userRole == "admin"){ // Admin
+        } else if ($window.localStorage.getItem("userRole") == "admin"){ // Admin
             $scope.homePageTemplate = '/templates/homepage/homepageAdmin.html';
         } else { // Altro
             $scope.homePageTemplate = '/templates/homepage/homepageNotSignedIn.html';
@@ -15,5 +15,5 @@ hexTreWebApp.controller('homepageCtrl', ['$scope','$rootScope',function($scope, 
         $scope.homePageTemplate = '/templates/homepage/homepageNotSignedIn.html';
     }
 
-    $scope.token = $rootScope.jwtToken;
+    $scope.token = $window.localStorage.getItem("jwtToken");
 }]);

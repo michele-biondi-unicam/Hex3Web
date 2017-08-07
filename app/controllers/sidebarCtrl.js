@@ -1,12 +1,12 @@
 var hexTreWebApp = angular.module("hexTreWeb");
 
-hexTreWebApp.controller('sidebarCtrl', ['$scope','$location','$rootScope',function($scope, $location, $rootScope){
+hexTreWebApp.controller('sidebarCtrl', ['$scope','$location','$window',function($scope, $location, $window){
     $scope.$on('$locationChangeSuccess', function() {
-        if($rootScope.userRole == "student"){
+        if($window.localStorage.getItem("userRole") == "student"){
             $scope.sidebarTemplate = '/templates/sidebar/sidebarStudent.html';
-        } else if($rootScope.userRole == "professor"){
+        } else if($window.localStorage.getItem("userRole") == "professor"){
             $scope.sidebarTemplate = '/templates/sidebar/sidebarProfessor.html';
-        } else  if($rootScope.userRole == "admin"){
+        } else  if($window.localStorage.getItem("userRole") == "admin"){
             $scope.sidebarTemplate = '/templates/sidebar/sidebarAdmin.html';
         } else {
              $scope.sidebarTemplate = '/templates/sidebar/sidebarNotSignedIn.html';
@@ -15,9 +15,9 @@ hexTreWebApp.controller('sidebarCtrl', ['$scope','$location','$rootScope',functi
 
     //Logout function
     $scope.logout = function(){
-        $rootScope.jwtToken = "";
-        $rootScope.userRole = "";
-        $rootScope.authenticated = false;
+        $window.localStorage.setItem("jwtToken", "");
+        $window.localStorage.setItem("userRole", "");
+        $window.localStorage.setItem("authenticated", "false");
         $location.path("/redirect");
     };
 

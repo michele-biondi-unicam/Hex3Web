@@ -1,6 +1,6 @@
 var hexTreWebApp = angular.module("hexTreWeb");
 
-hexTreWebApp.controller('navbarCtrl', ['$scope','$rootScope',function($scope, $rootScope){
+hexTreWebApp.controller('navbarCtrl', ['$scope',function($scope){
     $scope.sidebarToggle = function(){
         var mySidebar = document.getElementById("sidebar");
 

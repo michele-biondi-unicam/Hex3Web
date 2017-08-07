@@ -1,6 +1,6 @@
 var hexTreWebApp = angular.module("hexTreWeb");
 
-hexTreWebApp.controller('professorStagesCtrl', ['$scope','$rootScope','ProfessorService',function($scope, $rootScope, ProfessorService){
+hexTreWebApp.controller('professorStagesCtrl', ['$scope','$window','ProfessorService',function($scope, $window, ProfessorService){
     $scope.company = "";
     $scope.description = "";
 
@@ -12,7 +12,7 @@ hexTreWebApp.controller('professorStagesCtrl', ['$scope','$rootScope','Professor
             return;
         }
 
-        ProfessorService.createStage($rootScope.jwtToken, $scope.company, $scope.description)
+        ProfessorService.createStage($window.localStorage.getItem("jwtToken"), $scope.company, $scope.description)
         .then(function(response){
             alert("Stage creato");
         })
