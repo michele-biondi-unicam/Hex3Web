@@ -130,7 +130,7 @@ this.getStages = function(token){
     function: addCourse(token, topic, CFU)
     Adds a stage to the database
 */
-this.addStage = function(token, topic, CFU){
+this.addCourse = function(token, topic, CFU){
     var deferred = q.defer();
 
     if(token){
