@@ -21,10 +21,11 @@ var User = mongoose.model('User', new Schema({
         title : String,
         year: Date,
         courses : [{ //N.B it is an array
-            name : String,
+            topic : String,
             CFU : Number,
             passed : Boolean,
-            vote : {type: Number, min: 18, max: 30}
+            vote : {type: Number, min: 18, max: 30},
+            professor : String
         }],
         stage : { 
             company : String,
@@ -37,8 +38,9 @@ var User = mongoose.model('User', new Schema({
     },
     teachings : { // For professors
         courses : [{ //N.B it is an array
-            name : String,
-            CFU : Number
+            topic : String,
+            CFU : Number,
+            professor : String
         }],
         stages : [{ //N.B it is an array
             company : String,
