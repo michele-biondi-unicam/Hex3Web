@@ -125,5 +125,19 @@ this.addCourse = function(username, course){
                 });
     });
 
+    //Copies the new generated course inside the professor that created it.
+    User.findOneAndUpdate({username: username}, {$push : {"teachings.courses" : {
+                                    topic : generatedCourse.topic,
+                                    CFU : generatedCourse.CFU,
+                                    professor: generatedCourse.professor,
+                                    _id: generatedCourse._id } }}, 
+                            {upsert: true}) 
+        .then(function(){
+            logger.debug("Professor updated too");
+        })
+        .catch(function(err){
+            logger.debug("Error occurred while updating professor");
+        });
+
     return deferred.promise;
 };
