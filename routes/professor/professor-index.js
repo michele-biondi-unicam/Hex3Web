@@ -45,8 +45,8 @@ professorRoutes.use(function(req, res, next)
 
 //============================ PROFESSOR ROUTES ============================ //
 
-/* Creation of a stage
-
+/* 
+    Creates a stage
 */
 professorRoutes.post('/addStage',function(req,res){
     
@@ -72,6 +72,38 @@ professorRoutes.post('/addStage',function(req,res){
                                data:""}); 
     });
 });
+
+/* 
+    Creates a course
+*/
+professorRoutes.post('/addCourse',function(req,res){
+    
+    var token = req.body.token;
+    var topic = req.body.topic;
+    var CFU = req.body.CFU;
+
+    // check parameters 
+    if( !token || !topic || !CFU){
+        return res.status(400).json({ success: false, 
+                                                  code:professor_utilities.ERR_MISSING_DATA,
+                                                  message: 'Bad Request. You need a token, a topic and CFU'});
+    }
+
+    professor_utilities.addCourse(token, topic, CFU)
+    .then(function(course){
+        res.status(201).json({ success: true , msg:"course saved", data:course});
+    })
+    .catch(function(err){
+        res.status(400).json({ success: false , 
+                               code:err.code,
+                               msg:err.msg, 
+                               data:""}); 
+    });
+});
+
+/*
+    Gets the stages
+*/
 
 professorRoutes.get('/getStages', function(req,res){
     var token = req.param('token');
