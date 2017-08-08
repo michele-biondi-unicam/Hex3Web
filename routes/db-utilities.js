@@ -1,5 +1,7 @@
 var User = require('../models/user');   // get our mongoose User model
 var Stage = require('../models/stage'); // get our mongoose Stage model
+var Course = require('../models/course'); // get our mongoose Course model
+
 var q = require('q');  // q promise
 
 var db_utilities = this;
@@ -9,6 +11,7 @@ module.exports = db_utilities; // I export its methods so i can use it like a li
 //========= ERROR CODE ====== //
 var ERR_DB_DUPLICATE_KEY = '11000';
 
+//========= FUNCTIONS ======= //
 /*
     function : addUser(user)
     Adds a user to the database
@@ -22,7 +25,7 @@ this.addUser = function (user) {
     // save the sample user
     generatedUser.save()
         .then(function (user) {
-            logger.debug('utente salvato ' + JSON.stringify(user));
+            logger.debug('user saved ' + JSON.stringify(user));
             deferred.resolve(user);
         })
         .catch(function (err) {
@@ -56,7 +59,7 @@ this.addStage = function(username, stage){
     // save the sample stage
     generatedStage.save()
         .then(function (stage) {
-            logger.debug('stage salvato ' + JSON.stringify(stage));
+            logger.debug('stage saved ' + JSON.stringify(stage));
             deferred.resolve(stage);
         })
         .catch(function (err) {
@@ -75,7 +78,7 @@ this.addStage = function(username, stage){
                 });
         });
     
-    //Copies the new generated stage inside the professor
+    //Copies the new generated stage inside the professor that created it.
     User.findOneAndUpdate({username: username}, {$push : {"teachings.stages" : {
                                     company : generatedStage.company,
                                     description : generatedStage.description,
@@ -88,6 +91,39 @@ this.addStage = function(username, stage){
         .catch(function(err){
             logger.debug("Error occurred while updating professor");
         });
+
+    return deferred.promise;
+};
+
+/* Function addCourse(username, course)
+    adds a course to the database
+*/
+this.addCourse = function(username, course){
+    var deferred = q.defer();
+
+    //Creates a course that has to respect the mongoose Schema
+    var generatedCourse = new Course(course);
+
+    generatedCourse.save()
+    .then(function(course){
+        logger.debug('course saved ' + JSON.stringify(course));
+        deferred.resolve(course);
+    })
+    .catch(function (err) {
+            if (err.code == ERR_DB_DUPLICATE_KEY) {
+                deferred.reject({
+                    code: 'ERR_DB_DUPLICATE_KEY',
+                    msg: 'questo corso esiste gia'
+                });
+            }
+            else
+            { logger.error('[addCourse] ERROR: ' + err.message); }
+            //deferred.reject(err.errmsg);
+             deferred.reject({
+                    code: 'ERR_VALIDATION_NOT_PASSED',
+                    msg: err.message
+                });
+    });
 
     return deferred.promise;
 };
