@@ -24,6 +24,27 @@ hexTreWebApp.service('ProfessorService', ['$q','$http', function($q, $http){
             return deferred.promise;
         };
 
+        /* Function: createCourse(token, topic, CFU)
+        |  Creates a course 
+        */
+        this.createCourse = function(token, topic, CFU){
+            var deferred = $q.defer();
+
+            $http({
+                method: 'POST',
+                url: 'http://localhost:8080/professor/addCourse',
+                data: {'token':token, 'topic':topic, 'CFU':CFU}
+            })
+            .then(function(response){
+                deferred.resolve(response);
+            })
+            .catch(function(err, code){
+                deferred.reject(err);
+            });
+            
+            return deferred.promise;
+        };
+
         /* Function: getStages(token)
         |  returns the stages of the professor
         */

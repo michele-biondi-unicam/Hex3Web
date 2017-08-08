@@ -33,6 +33,7 @@
     <script src="/controllers/redirectCtrl.js"></script>
     <script src="/controllers/navbarCtrl.js"></script>
     <script src="/controllers/professorStagesCtrl.js"></script>
+    <script src="/controllers/professorCoursesCtrl.js"></script>
 
     <!-- AngularJS Services -->
     <script src="/services/authentication.js"></script>
@@ -59,7 +60,7 @@
         <span id="logo" class="w3-bar-item w3-left"><a href="#!" > | <i class="fa fa-terminal"></i> | HEX3web</a></span>
     </div>
 
-    <!-- Sidebar code -->
+    <!-- Sidebar code (Injected for very different user)-->
     <div ng-controller="sidebarCtrl">
         <div ng-include="sidebarTemplate">
             
