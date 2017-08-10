@@ -4,9 +4,25 @@ hexTreWebApp.controller('professorCoursesCtrl', ['$scope','$window','ProfessorSe
     //================= SCOPE VARIABLES ====================//
     $scope.topic = "";
     $scope.CFU = 0;
+    $scope.courses = "";
 
     //================= SCOPE FUNCTIONS ====================//
     
+    /* Function: getCourses()
+    |   Gets all the courses of the professor from the database
+    */
+    $scope.getCourses = function(){
+        ProfessorService.getCourses($window.localStorage.getItem("jwtToken"))
+        .then(function(response){
+            $scope.courses = response.data.reverse(); // Ordered by most recent
+        })
+        .catch(function(err){
+            alert("Errore nella ricezione dei corsi");
+        });
+    };
+
+
+
     /* Function: createCourse()
     |   Creates the course
     */
@@ -23,11 +39,13 @@ hexTreWebApp.controller('professorCoursesCtrl', ['$scope','$window','ProfessorSe
             // I reset forms
             $scope.topic = "";
             $scope.CFU = 0;
+            // I Update the courses
+            $scope.getCourses();
         })
         .catch(function(err){
             alert("Errore nella creazione del corso");
         });
     };
 
-    
+    $scope.getCourses();
 }]);

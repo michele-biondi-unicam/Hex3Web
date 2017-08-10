@@ -66,4 +66,25 @@ hexTreWebApp.service('ProfessorService', ['$q','$http', function($q, $http){
             return deferred.promise;
         };
 
+        /* Function: getCourses(token)
+        |  returns the courses of the professor
+        */
+        this.getCourses = function(token){
+            var deferred = $q.defer();
+
+            $http({
+                method: 'GET',
+                url: 'http://localhost:8080/professor/getCourses',
+                params: {token: token}
+            })
+            .then(function(response){
+                deferred.resolve(response.data);
+            })
+            .catch(function(err, code){
+                deferred.reject(err);
+            });
+
+            return deferred.promise;
+        };
+
 }]).run(function(ProfessorService){});
