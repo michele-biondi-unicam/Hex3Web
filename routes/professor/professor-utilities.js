@@ -158,4 +158,36 @@ this.addCourse = function(token, topic, CFU){
     return deferred.promise;
 };
 
+/*
+   function: getCourses(token)
+    returns all the courses of the professor
+*/
+this.getCourses = function(token){
+    var deferred = q.defer();
 
+      if(token){
+        jwt.verify(token, config.secret, function(err, decoded){
+        if(err){
+          logger.error('token expired or not authenticated: '+token);
+          deferred.reject(false);
+        } else {
+            var username = decoded._doc.username;
+            User.findOne({username: username})
+              .then(function(user){
+                var courses = user.teachings.courses;
+                deferred.resolve(courses);
+              })
+              .catch(function(err){
+                logger.error("Error occurred while getting the courses");
+                deferred.reject(false);
+              });
+
+          }
+        });
+      } else {
+        logger.debug('no token provided by professor');
+        deferred.reject(false);
+      }
+
+      return deferred.promise;
+};

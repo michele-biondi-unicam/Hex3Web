@@ -119,3 +119,22 @@ professorRoutes.get('/getStages', function(req,res){
                                data:""}); 
     });
 });
+
+/*
+    Gets the courses
+*/
+
+professorRoutes.get('/getCourses', function(req,res){
+    var token = req.param('token');
+    logger.debug("This is the token: " + token);
+    professor_utilities.getCourses(token)
+    .then(function(courses){
+        res.status(201).json({ success: true , msg:"These are your courses", data:courses});
+    })
+    .catch(function(err){
+        res.status(400).json({ success: false , 
+                               code:err.code,
+                               msg:err.msg, 
+                               data:""}); 
+    });
+});
