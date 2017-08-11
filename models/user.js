@@ -45,7 +45,14 @@ var User = mongoose.model('User', new Schema({
         stages : [{ //N.B it is an array
             company : String,
             description : String,
-            professor: String
+            professor : String
+        }],
+        exams :[{ //N.B it is an array
+            professor : String,
+            examDate : Date,
+            course : Schema.Types.ObjectId,
+            notes : String,
+            registeredStudents : [Schema.Types.ObjectId] //Array of ID
         }]
     }
 }));
