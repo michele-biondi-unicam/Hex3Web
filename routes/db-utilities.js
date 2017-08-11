@@ -1,6 +1,7 @@
 var User = require('../models/user');   // get our mongoose User model
 var Stage = require('../models/stage'); // get our mongoose Stage model
 var Course = require('../models/course'); // get our mongoose Course model
+var Exam = require('../models/exam');
 
 var q = require('q');  // q promise
 
@@ -138,6 +139,39 @@ this.addCourse = function(username, course){
         .catch(function(err){
             logger.debug("Error occurred while updating professor");
         });
+
+    return deferred.promise;
+};
+
+/* Function addExam(username, exam)
+    adds an exam to the database
+*/
+this.addExam = function(username, exam){
+    var deferred = q.defer();
+
+    //Creates an exam that has to respect the mongoose Schema
+    var generatedExam = new Exam(exam);
+
+    generatedExam.save()
+    .then(function(exam){
+        logger.debug('exam saved ' + JSON.stringify(exam));
+        deferred.resolve(exam);
+    })
+    .catch(function (err) {
+            if (err.code == ERR_DB_DUPLICATE_KEY) {
+                deferred.reject({
+                    code: 'ERR_DB_DUPLICATE_KEY',
+                    msg: 'questo appello esiste gia'
+                });
+            }
+            else
+            { logger.error('[addExam] ERROR: ' + err.message); }
+            //deferred.reject(err.errmsg);
+             deferred.reject({
+                    code: 'ERR_VALIDATION_NOT_PASSED',
+                    msg: err.message
+                });
+    });
 
     return deferred.promise;
 };
