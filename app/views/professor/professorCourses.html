@@ -1,16 +1,16 @@
 <div class="w3-row-padding w3-margin-bottom w3-margin-top">
     <form class="w3-container w3-round w3-card-4 w3-white w3-margin">
         <div class="w3-row w3-section">
-                <div class="w3-col login-icon"><i class="w3-xxlarge fa fa-pencil-square-o"></i></div>
-                <div class="w3-rest">
-                    <input ng-model="topic" class="w3-input w3-border" name="corso" type="text" placeholder="Nome del corso">
-                </div>
+            <div class="w3-col login-icon"><i class="w3-xxlarge fa fa-pencil-square-o"></i></div>
+            <div class="w3-rest">
+                <input ng-model="topic" class="w3-input w3-border" name="corso" type="text" placeholder="Nome del corso">
             </div>
+        </div>
 
-            <div class="w3-row w3-section">
-                <div class="w3-col login-icon"><i class="w3-xxlarge fa fa-sort-numeric-asc"></i><b>CFU</b></div>
-                <div class="w3-rest">
-                    <select ng-model="CFU" class="w3-select" name="option">
+        <div class="w3-row w3-section">
+            <div class="w3-col login-icon"><i class="w3-xxlarge fa fa-sort-numeric-asc"></i><b>CFU</b></div>
+            <div class="w3-rest">
+                <select ng-model="CFU" class="w3-select" name="option">
                         <option value="" disabled selected>CFU</option>
                         <option value="1">1</option>
                         <option value="2">2</option>
@@ -24,9 +24,9 @@
                         <option value="10">10</option>
                         <option value="11">11</option>
                         <option value="12">12</option>
-                    </select>
-                </div>
+                </select>
             </div>
+        </div>
         <button ng-click="createCourse()" class="w3-margin-top w3-margin-bottom w3-button w3-block w3-teal"> <i class="fa fa-cog"></i> Aggiungi corso</button>
     </form>
 </div>
@@ -37,8 +37,8 @@
 
         <hr />
 
-        <div ng-repeat="course in courses" class="w3-container w3-round w3-card-4 w3-green w3-margin" >
-            <h1 class="w3-xxlarge"><i class="fa fa-graduation-cap"></i>  {{course.topic}} </h1>
+        <div ng-repeat="course in courses" class="w3-container w3-round w3-card-4 w3-green w3-margin">
+            <h1 class="w3-xxlarge"><i class="fa fa-graduation-cap"></i> {{course.topic}} </h1>
             <p class="w3-small"> <b>CFU</b> : {{course.CFU}} </p>
             <p class="w3-tiny"> ID: {{course._id}} </p>
             <hr />
