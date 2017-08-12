@@ -1,7 +1,7 @@
 var User = require('../models/user');   // get our mongoose User model
 var Stage = require('../models/stage'); // get our mongoose Stage model
 var Course = require('../models/course'); // get our mongoose Course model
-var Exam = require('../models/exam');
+var Exam = require('../models/exam'); // get our mongoose Exam model
 
 var q = require('q');  // q promise
 
@@ -172,6 +172,25 @@ this.addExam = function(username, exam){
                     msg: err.message
                 });
     });
+
+    //Copies the new generated exam inside the professor that created it.
+    User.findOneAndUpdate({ username: username }, {
+        $push: {
+            "teachings.exams": {
+                examDate : generatedExam.examDate,
+                course : generatedExam.course,
+                notes : generatedExam.notes,
+                _id: generatedExam._id
+            }
+        }
+    },
+        { upsert: true })
+        .then(function () {
+            logger.debug("Professor updated too");
+        })
+        .catch(function (err) {
+            logger.debug("Error occurred while updating professor");
+        });
 
     return deferred.promise;
 };

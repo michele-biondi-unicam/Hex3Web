@@ -101,6 +101,35 @@ professorRoutes.post('/addCourse',function(req,res){
     });
 });
 
+/* 
+    Creates an exam
+*/
+professorRoutes.post('/addExam',function(req,res){
+    
+    var token = req.body.token;
+    var examDate = req.body.examDate;
+    var course = req.body.course;
+    var notes = req.body.notes;
+
+    // check parameters 
+    if( !token || !examDate || !course || !notes){
+        return res.status(400).json({ success: false, 
+                                                  code:professor_utilities.ERR_MISSING_DATA,
+                                                  message: 'Bad Request. You need an examDate a course ID and notes'});
+    }
+
+    professor_utilities.addExam(token, examDate, course, notes)
+    .then(function(exam){
+        res.status(201).json({ success: true , msg:"exam saved", data:course});
+    })
+    .catch(function(err){
+        res.status(400).json({ success: false , 
+                               code:err.code,
+                               msg:err.msg, 
+                               data:""}); 
+    });
+});
+
 /*
     Gets the stages
 */

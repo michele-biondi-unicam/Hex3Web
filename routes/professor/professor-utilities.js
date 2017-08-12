@@ -2,6 +2,7 @@ var jwt = require('jsonwebtoken');        // used to create, sign, and verify to
 var User = require('../../models/user');   // get our mongoose User model
 var Stage = require('../../models/stage'); // get our mongoose Stage model
 var Course = require('../../models/course'); // get our mongoose Course model
+var Exam = require('../../models/exam'); // get our mongoose Exam model
 var q = require('q');                   // Q promise
 var config = require('../../config');        // get our config file
 
@@ -190,4 +191,36 @@ this.getCourses = function(token){
       }
 
       return deferred.promise;
+};
+
+/*
+    function: addExam(token, topic, CFU)
+    Adds an exam to the database
+*/
+this.addExam = function(token, examDate, course, notes){
+  var deferred = q.defer();
+
+  if(token){
+    jwt.verify(token, config.secret, function(err, decoded){
+      if(err){
+        logger.error('token expired or not authenticated: '+token);
+        deferred.reject(false);
+      } else {
+        var professorUsername = decoded._doc.username;
+        var result = db_utilities.addExam(professorUsername, {
+          examDate : examDate,
+          course : course,
+          notes : notes
+        });
+
+        deferred.resolve(result);
+
+      }
+    });
+  } else {
+    logger.debug('no token provided');
+    deferred.reject(false);
+  }
+
+  return deferred.promise;
 };
