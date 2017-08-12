@@ -224,3 +224,38 @@ this.addExam = function(token, examDate, course, notes){
 
   return deferred.promise;
 };
+
+
+/*
+   function: getExams(token)
+    returns all the exams created by the professor
+*/
+this.getExams = function(token){
+  var deferred = q.defer();
+
+    if(token){
+      jwt.verify(token, config.secret, function(err, decoded){
+      if(err){
+        logger.error('token expired or not authenticated: '+token);
+        deferred.reject(false);
+      } else {
+          var username = decoded._doc.username;
+          User.findOne({username: username})
+            .then(function(user){
+              var exams = user.teachings.exams;
+              deferred.resolve(exams);
+            })
+            .catch(function(err){
+              logger.error("Error occurred while getting the exams");
+              deferred.reject(false);
+            });
+
+        }
+      });
+    } else {
+      logger.debug('no token provided by professor');
+      deferred.reject(false);
+    }
+
+    return deferred.promise;
+};
