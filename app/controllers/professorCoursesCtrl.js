@@ -1,6 +1,6 @@
 var hexTreWebApp = angular.module("hexTreWeb");
 
-hexTreWebApp.controller('professorCoursesCtrl', ['$scope','$window','ProfessorService',function($scope, $window, ProfessorService){
+hexTreWebApp.controller('professorCoursesCtrl', ['$scope','$window','$location','ProfessorService',function($scope, $window, $location, ProfessorService){
     //================= SCOPE VARIABLES ====================//
     $scope.topic = "";
     $scope.CFU = 0;
@@ -17,7 +17,13 @@ hexTreWebApp.controller('professorCoursesCtrl', ['$scope','$window','ProfessorSe
             $scope.courses = response.data.reverse(); // Ordered by most recent
         })
         .catch(function(err){
-            alert("Errore nella ricezione dei corsi");
+            alert("Errore nella ricezione dei corsi, probabilmente il tuo token è scaduto. Ri-esegui il login.");
+            // Logout
+            $window.localStorage.setItem("jwtToken", "");
+            $window.localStorage.setItem("userRole", "");
+            $window.localStorage.setItem("authenticated", "false");
+            $location.path('/redirect');
+
         });
     };
 
@@ -43,7 +49,12 @@ hexTreWebApp.controller('professorCoursesCtrl', ['$scope','$window','ProfessorSe
             $scope.getCourses();
         })
         .catch(function(err){
-            alert("Errore nella creazione del corso");
+            alert("Errore nella creazione del corso, probabilmente il tuo token è scaduto. Ri-esegui il login.");
+             // Logout
+             $window.localStorage.setItem("jwtToken", "");
+             $window.localStorage.setItem("userRole", "");
+             $window.localStorage.setItem("authenticated", "false");
+             $location.path('/redirect');
         });
     };
 

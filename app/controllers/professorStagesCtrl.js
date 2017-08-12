@@ -1,6 +1,6 @@
 var hexTreWebApp = angular.module("hexTreWeb");
 
-hexTreWebApp.controller('professorStagesCtrl', ['$scope','$window','ProfessorService',function($scope, $window, ProfessorService){
+hexTreWebApp.controller('professorStagesCtrl', ['$scope','$window','$location','ProfessorService',function($scope, $window, $location, ProfessorService){
     //================= SCOPE VARIABLES ====================//
     $scope.company = "";
     $scope.description = "";
@@ -17,7 +17,12 @@ hexTreWebApp.controller('professorStagesCtrl', ['$scope','$window','ProfessorSer
             $scope.stages = response.data.reverse(); // Ordered by most recent
         })
         .catch(function(err){
-            alert("Errore nella ricezione degli stages");
+            alert("Errore nella ricezione degli stages, probabilmente il tuo token è scaduto. Ri-esegui il login.");
+             // Logout
+             $window.localStorage.setItem("jwtToken", "");
+             $window.localStorage.setItem("userRole", "");
+             $window.localStorage.setItem("authenticated", "false");
+             $location.path('/redirect');
         });
     };
 
@@ -42,7 +47,12 @@ hexTreWebApp.controller('professorStagesCtrl', ['$scope','$window','ProfessorSer
             $scope.getStages();
         })
         .catch(function(err){
-            alert("Errore nella creazione dello stage");
+            alert("Errore nella creazione dello stage, probabilmente il tuo token è scaduto. Ri-esegui il login.");
+             // Logout
+             $window.localStorage.setItem("jwtToken", "");
+             $window.localStorage.setItem("userRole", "");
+             $window.localStorage.setItem("authenticated", "false");
+             $location.path('/redirect');
         });
     };
 
