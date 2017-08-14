@@ -40,16 +40,42 @@ hexTreWebApp.controller('professorExamsCtrl', ['$scope','$window','$location','P
            ProfessorService.createExam($window.localStorage.getItem("jwtToken"), $scope.examDate, $scope.courseChoice._id, $scope.notes)
            .then(function(response){
                 alert("Esame creato!");
+                $scope.courseChoice = "";
+                $scope.notes = "";
+
+                // Updates the exams visualized
+                $scope.getExams();
            })
            .catch(function(err){
-            alert("Errore nella creazione dell'esame, probabilmente il tuo token è scaduto. Ri-esegui il login.");
+            alert("Errore nella creazione dell'appello, probabilmente il tuo token è scaduto. Ri-esegui il login.");
             // Logout
-            
+            $window.localStorage.setItem("jwtToken", "");
+            $window.localStorage.setItem("userRole", "");
+            $window.localStorage.setItem("authenticated", "false");
+            $location.path('/redirect');
            });
 
 
          
-        };
+    };
+
+    /* Function : getExams()
+        Gets all the exams created by the professor
+    */
+    $scope.getExams = function(){
+        ProfessorService.getExams($window.localStorage.getItem("jwtToken"))
+        .then(function(response){
+            $scope.exams = response.data.reverse();
+        })
+        .catch(function(err){
+            alert("Errore nella ricezione degli appelli, probabilmente il tuo token è scaduto. Ri-esegui il login.");
+            // Logout
+            $window.localStorage.setItem("jwtToken", "");
+            $window.localStorage.setItem("userRole", "");
+            $window.localStorage.setItem("authenticated", "false");
+            $location.path('/redirect');
+        });
+    };
 
     // !!! THIS IS THE SAME AS THE FUNCTION IN THE COURSES CONTROLLERS !!!
     /* Function: getCourses()
@@ -79,4 +105,6 @@ hexTreWebApp.controller('professorExamsCtrl', ['$scope','$window','$location','P
     // Gets the courses for the form at page load
     $scope.getCourses();
     
+    // Gets the exams at page load
+    $scope.getExams();
 }]);
