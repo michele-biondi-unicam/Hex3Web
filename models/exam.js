@@ -7,6 +7,7 @@ var Exam = mongoose.model('Exam', new Schema({
     professor : String,
     examDate : Date,
     course : Schema.Types.ObjectId,
+    courseTopic : String,
     notes : String,
     registeredStudents : [Schema.Types.ObjectId] //Array of ID
 }));

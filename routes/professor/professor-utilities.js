@@ -194,7 +194,7 @@ this.getCourses = function(token){
 };
 
 /*
-    function: addExam(token, topic, CFU)
+    function: addExam(token, examDate, course , notes)
     Adds an exam to the database
 */
 this.addExam = function(token, examDate, course, notes){
@@ -207,11 +207,27 @@ this.addExam = function(token, examDate, course, notes){
         deferred.reject(false);
       } else {
         var professorUsername = decoded._doc.username;
-        var result = db_utilities.addExam(professorUsername, {
-          examDate : examDate,
-          course : course,
-          notes : notes
+        var courseTopic;
+        var result;
+
+        Course.findOne({_id:course})
+        .then(function(course){
+           courseTopic = course.topic;
+
+           result = db_utilities.addExam(professorUsername, {
+            examDate : examDate,
+            course : course,
+            courseTopic : courseTopic,
+            notes : notes
+          });
+
+        })
+        .catch(function(error){
+          logger.error('Cannot find course');
+          deferred.reject(false);
         });
+
+        
 
         deferred.resolve(result);
 

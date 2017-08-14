@@ -106,7 +106,7 @@
                 <hr />
 
                 <div ng-repeat="exam in exams" class="w3-container w3-round w3-card-4 w3-lime w3-margin">
-                        <h1 class="w3-xxlarge"><i class="fa fa-building"></i> {{exam.examDate | date}} </h1>
+                        <h1 class="w3-xxlarge"><i class="fa fa-building"></i> {{exam.courseTopic}} - {{exam.examDate | date}} </h1>
                         <p class="w3-small"> <b>ID corso</b> : {{exam.course}} </p>
                         <p class="w3-tiny"> Note: {{exam.notes}} </p>
                         <hr />

@@ -51,6 +51,7 @@ var User = mongoose.model('User', new Schema({
             professor : String,
             examDate : Date,
             course : Schema.Types.ObjectId,
+            courseTopic: String,
             notes : String,
             registeredStudents : [Schema.Types.ObjectId] //Array of ID
         }]

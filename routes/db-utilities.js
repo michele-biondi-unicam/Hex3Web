@@ -179,6 +179,7 @@ this.addExam = function(username, exam){
             "teachings.exams": {
                 examDate : generatedExam.examDate,
                 course : generatedExam.course,
+                courseTopic: generatedExam.courseTopic,
                 notes : generatedExam.notes,
                 _id: generatedExam._id
             }
