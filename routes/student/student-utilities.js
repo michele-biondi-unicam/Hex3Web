@@ -1,5 +1,8 @@
 var jwt = require('jsonwebtoken');        // used to create, sign, and verify tokens
 var User = require('../../models/user');   // get our mongoose User model
+var Course = require('../../models/course'); // get our mongoose Course model
+var Exam = require('../../models/exam'); // get our mongoose Exam model
+var Stage = require('../../models/stage'); // get our mongoose Stage model
 var q = require('q');                   // Q promise
 var config = require('../../config');        // get our config file
 
@@ -53,32 +56,32 @@ this.checkToken = function(token)
  return deferred.promise;
 };
 
-
-/*
-    function: getCourses(token)
-    Returns the courses of the user with the specified token
+/* function getAvailableCourses(token)
+      returns all the available courses for the student
 */
 
-this.getCourses = function (token){
-    var deferred = q.defer();
+this.getAvailableCourses = function (token) {
+  var deferred = q.defer();
+  if (token) {
+    jwt.verify(token, config.secret, function (err, decoded) {
+      if (err) {
+        logger.error('token expired or not authenticated: ' + token);
+        deferred.reject(false);
+      } else {
+        Course.find()
+          .then(function (courses) {
+            deferred.resolve(courses);
+          })
+          .catch(function (err) {
+            logger.error("Error occurred while getting the available courses");
+            deferred.reject(false);
+          });
+      }
+    });
+  } else {
+    logger.debug('no token provided by professor');
+    deferred.reject(false);
+  }
 
-    if(token){
-      jwt.verify(token, config.secret, function(err, decoded){
-        if(err){
-          logger.error('token expired or not authenticated: '+token);
-          deferred.reject(false);  
-        } 
-        else {
-          var user_course = decoded['_doc'].course;
-          deferred.resolve(user_course);
-        }
-      });
-    }
-    else {
-      //  there is no token
-      logger.debug('no token provided');
-      deferred.reject(false);
-    }
-
-    return deferred.promise;
+  return deferred.promise;
 };
