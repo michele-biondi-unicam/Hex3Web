@@ -58,5 +58,7 @@ hexTreWebApp.controller('professorCoursesCtrl', ['$scope','$window','$location',
         });
     };
 
+
+    // Gets courses at page load
     $scope.getCourses();
 }]);
