@@ -1,0 +1,1 @@
+var hexTreWebApp = angular.module("hexTreWeb");
