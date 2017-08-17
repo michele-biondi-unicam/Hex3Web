@@ -37,13 +37,61 @@ studentRoutes.use(function(req, res, next)
 
 //============================ STUDENT ROUTES ============================ //
 
-
+/*
+    Gets available courses
+*/
 studentRoutes.get('/getAvailableCourses', function(req, res){
-    var token = req.param('token');
-    logger.debug("This is the token: " + token);
-    student_utilities.getAvailableCourses(token)
+    student_utilities.getAvailableCourses()
     .then(function(courses){
         res.status(201).json({ success: true , msg:"These are the available courses", data:courses});
+    })
+    .catch(function(err){
+        res.status(400).json({ success: false , 
+            code:err.code,
+            msg:err.msg, 
+            data:""}); 
+    });
+});
+
+/*
+    Gets student courses
+*/
+
+studentRoutes.get('/getStudentCourses', function(req, res){
+    var token = req.param('token');
+
+    student_utilities.getStudentCourses(token)
+    .then(function(studentCourses){
+        res.status(201).json({ success: true , msg:"These are the student Courses", data:studentCourses});
+    })
+    .catch(function(err){
+        res.status(400).json({ success: false , 
+            code:err.code,
+            msg:err.msg, 
+            data:""}); 
+    });
+
+});
+
+/*
+    Adds Course to student
+*/
+
+studentRoutes.post('/subscribeCourse', function(req,res){
+    var token = req.body.token;
+    var courseId = req.body.courseId;
+
+    // check parameters
+    // check parameters 
+    if( !token || !courseId){
+        return res.status(400).json({ success: false, 
+                                                  code:student_utilities.ERR_MISSING_DATA,
+                                                  message: 'Bad Request. You need a ourse ID to subscribe to a course'});
+    }
+
+    student_utilities.subscribeCourse(token, courseId)
+    .then(function(resultId){
+        res.status(201).json({ success: true , msg:"added course to student", data: resultId});
     })
     .catch(function(err){
         res.status(400).json({ success: false , 

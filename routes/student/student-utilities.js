@@ -11,6 +11,11 @@ var db_utilities = require('../db-utilities');
 var student_utilities = this;
 module.exports = student_utilities;
 
+//======================== ERROR CODES =====================//
+this.ERR_API_NOT_FOUND = 'ERR_API_NOT_FOUND';
+this.ERR_API_WRONG_PSW = 'ERR_API_WRONG_PSW';
+this.ERR_MISSING_DATA  = 'ERR_MISSING_DATA';
+
 //============ FUNCTIONS ===========//
 
 /* 
@@ -60,7 +65,26 @@ this.checkToken = function(token)
       returns all the available courses for the student
 */
 
-this.getAvailableCourses = function (token) {
+this.getAvailableCourses = function () {
+  var deferred = q.defer();
+  Course.find()
+  .then(function(courses){
+    deferred.resolve(courses);
+  })
+  .catch(function(err){
+    logger.error("Error occurred while getting the available courses");
+    deferred.reject(false);
+  });
+
+
+  return deferred.promise;
+};
+
+/*  function getStudentCourses(token)
+      returns all the courses of the student
+*/
+
+this.getStudentCourses = function(token){
   var deferred = q.defer();
   if (token) {
     jwt.verify(token, config.secret, function (err, decoded) {
@@ -68,18 +92,51 @@ this.getAvailableCourses = function (token) {
         logger.error('token expired or not authenticated: ' + token);
         deferred.reject(false);
       } else {
-        Course.find()
-          .then(function (courses) {
-            deferred.resolve(courses);
+        var username = decoded._doc.username;
+        User.findOne({username: username})
+          .then(function (student) {
+            deferred.resolve(student.studyplan.courses);
           })
           .catch(function (err) {
-            logger.error("Error occurred while getting the available courses");
+            logger.error("Error occurred while getting the courses");
             deferred.reject(false);
           });
       }
     });
   } else {
-    logger.debug('no token provided by professor');
+    logger.debug('no token provided by student');
+    deferred.reject(false);
+  }
+
+  return deferred.promise;
+};
+
+/* function subscribeCourse(token,courseId)
+    makes the student subscribe to a course
+*/
+
+this.subscribeCourse = function(token, courseId){
+  var deferred = q.defer();
+
+  if(token){
+    jwt.verify(token, config.secret, function (err, decoded){
+      if (err) {
+        logger.error('token expired or not authenticated: ' + token);
+        deferred.reject(false);
+      } else {
+        
+        var username = decoded._doc.username;
+        db_utilities.addCourseToStudent(username,courseId)
+        .then(function(id){
+          deferred.resolve(id);
+        })
+        .catch(function(err){
+          deferred.reject(false);
+        });
+      }
+    });
+  } else {
+    logger.debug('no token provided by student');
     deferred.reject(false);
   }
 

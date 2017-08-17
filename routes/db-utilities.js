@@ -47,6 +47,7 @@ this.addUser = function (user) {
     return deferred.promise;
 };
 
+//==================================PROFESSOR==============================================================//
 /*
     function: addStage(stage)
     adds a stage to the database
@@ -192,6 +193,50 @@ this.addExam = function(username, exam){
         .catch(function (err) {
             logger.debug("Error occurred while updating professor");
         });
+
+    return deferred.promise;
+};
+
+//============================STUDENT=======================================================================//
+
+/* Function addCourseToStudent(username, courseId)
+    adds a course to the student specified
+*/
+
+this.addCourseToStudent = function(username, courseId){
+    var deferred = q.defer();
+    
+    Course.findById(courseId)
+    .then(function(course){
+        // If everything went ok i add the course to the student
+        User.findOneAndUpdate({username:username}, 
+            { $push : {"studyplan.courses" : {
+                topic : course.topic,
+                CFU : course.CFU,
+                passed: "false",
+                professor: course.professor,
+                _id: course._id } 
+            }}, 
+            {upsert:true})
+        .then(function(){
+            logger.debug("Added course to student");
+            deferred.resolve(courseId);
+        })
+        .catch(function(err){
+            logger.debug("Error while adding course to student");
+            deferred.reject({ success: false , 
+                code:err.code,
+                msg:err.msg, 
+                data:""}); 
+        });
+
+    })
+    .catch(function(err){
+        deferred.reject({ success: false , 
+            code:err.code,
+            msg:err.msg, 
+            data:""}); 
+    });
 
     return deferred.promise;
 };
