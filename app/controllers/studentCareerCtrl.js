@@ -13,11 +13,15 @@ hexTreWebApp.controller('studentCareerCtrl', ['$scope','$location','$window','St
         StudentService.getAvailableCourses($window.localStorage.getItem("jwtToken"))
         .then(function(response){
             $scope.availableCourses = response.data;
-            alert(JSON.stringify(response.data));
         }) 
         .catch(function(err){
-            //SCADE IL TOKEN
-            alert("Error");
+            alert("Errore nella ricezione dei corsi, probabilmente il tuo token è scaduto. Ri-esegui il login.");
+            // Logout
+            $window.localStorage.setItem("jwtToken", "");
+            $window.localStorage.setItem("userRole", "");
+            $window.localStorage.setItem("authenticated", "false");
+            $location.path('/redirect');
+
         });
     };
 

@@ -1,5 +1,17 @@
 <div class="w3-row-padding w3-margin-bottom w3-margin-top">
-    <h1 class="w3-center w3-xxxlarge"> 
-        Qui è dove verrà visualizzata la tua carriera
-    </h1>
+    <div class="w3-row-padding w3-margin-bottom w3-margin-top">
+        <div class="w3-container w3-round w3-card-4 w3-white w3-margin">
+            <h1 class="w3-center">Corsi disponibili : </h1>
+    
+            <hr />
+    
+            <div ng-repeat="course in availableCourses" class="w3-container w3-round w3-card-4 w3-green w3-margin">
+                <h1 class="w3-xxlarge"><i class="fa fa-graduation-cap"></i> {{course.topic}} </h1>
+                <p class="w3-small"> <b>CFU</b> : {{course.CFU}} </p>
+                <p class="w3-tiny"> ID: {{course._id}} </p>
+                <hr />
+            </div>
+        </div>
+    
+    </div>
 </div>
