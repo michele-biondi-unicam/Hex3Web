@@ -31,9 +31,9 @@ hexTreWebApp.config(function($locationProvider, $routeProvider) {
     .when("/forbidden", {
         templateUrl : "/views/forbidden/forbidden.html"
     })
-    .when("/studentcareer", {
-        templateUrl : "/views/student/studentCareer.html",
-        controller: "studentCareerCtrl"
+    .when("/studentcourses", {
+        templateUrl : "/views/student/studentCourses.html",
+        controller: "studentCoursesCtrl"
     })
     .when("/studentexams", {
         templateUrl : "/views/student/studentExams.html"
