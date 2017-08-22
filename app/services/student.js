@@ -24,6 +24,9 @@ hexTreWebApp.service('StudentService', ['$q','$http', function($q, $http){
         return deferred.promise;
     };
 
+    /* Function subscribeCourse(token,courseId)
+            makes student subscribe to a course
+    */
     this.subscribeCourse = function(token, courseId){
         var deferred = $q.defer();
 
@@ -45,5 +48,28 @@ hexTreWebApp.service('StudentService', ['$q','$http', function($q, $http){
         return deferred.promise;
     };
 
+    /*
+        Function getStudentCourses(token)
+         Gets all the courses the student subscribed
+    */
+    this.getStudentCourses = function(token){
+        var deferred = $q.defer();
+
+        $http({
+            method: 'GET',
+            url: 'http://localhost:8080/student/getStudentCourses',
+            params: {token: token}
+        })
+        .then(function(result){
+            deferred.resolve(result.data);
+            
+        })
+        .catch(function(err){
+            deferred.reject(err);
+            
+        });
+
+        return deferred.promise;
+    };
 
 }]).run(function(StudentService){});
